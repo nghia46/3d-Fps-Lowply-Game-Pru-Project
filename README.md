@@ -1,4 +1,4 @@
-Game name: Colosium Area
+# Game name: Colosium Area
 ## DevLog
 ### Day 1
 - Make Model (Gun,Player,Colosium) as a prototype(DIY)
