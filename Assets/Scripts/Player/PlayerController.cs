@@ -6,6 +6,7 @@ namespace Player
     public class PlayerController : MonoBehaviour
     {
         [Header("Player Properties")]
+
         [SerializeField] private PlayerValue playerValue;
         [SerializeField] private InputReader input;
         [SerializeField] private Transform groundCheck;
@@ -46,7 +47,6 @@ namespace Player
 
         private void Update()
         {
-
 
             UpdateGroundedStatus();
 

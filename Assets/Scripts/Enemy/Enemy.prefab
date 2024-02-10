@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2516246516325212526}
-  - component: {fileID: 5945074561466489633}
   - component: {fileID: 5649294491472641413}
   - component: {fileID: 8110676994464766625}
-  m_Layer: 0
+  - component: {fileID: 5945074561466489633}
+  - component: {fileID: 6367333888720476592}
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,18 +36,6 @@ Transform:
   - {fileID: 930278483297721475}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5945074561466489633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3502180067610029460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd2c5109b45f19944aeb83efb235d251, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &5649294491472641413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -95,6 +84,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5945074561466489633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3502180067610029460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2c5109b45f19944aeb83efb235d251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  health: 10
+  stoppingDistance: 10
+--- !u!114 &6367333888720476592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3502180067610029460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c526fdbec2b49e0418a4167fc0123e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &820704235751160680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -146,6 +162,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 033426e784db8d543a8b95471755f8c8, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 033426e784db8d543a8b95471755f8c8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
