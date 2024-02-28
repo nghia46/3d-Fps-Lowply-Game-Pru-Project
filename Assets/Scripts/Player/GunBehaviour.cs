@@ -7,6 +7,7 @@ public class GunBehaviour : MonoBehaviour
 {
     //[SerializeField] private PlayerInput playerInput;
     [SerializeField] private InputReader input;
+    [SerializeField] private Animator animator;
     [SerializeField] private Transform cameraOrientation;
     [SerializeField] private Transform muzzle;
     [SerializeField] private float damage;
@@ -57,6 +58,7 @@ public class GunBehaviour : MonoBehaviour
 
     void Shoot()
     {
+        animator.SetTrigger("Shoot");
         muzzle.transform.GetChild(0).transform.gameObject.SetActive(true);
         if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit, maxDistance, hitLayers))
         {
