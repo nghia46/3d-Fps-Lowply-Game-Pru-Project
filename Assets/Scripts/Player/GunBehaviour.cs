@@ -7,7 +7,6 @@ public class GunBehaviour : MonoBehaviour
 {
     [SerializeField] private InputReader input;
     [SerializeField] private Animator animator;
-    [SerializeField] private Transform cameraOrientation;
     [SerializeField] private Transform muzzle;
     [SerializeField] private float damage;
     [SerializeField] private float maxDistance = 100f;
@@ -33,9 +32,15 @@ public class GunBehaviour : MonoBehaviour
     {
         isShooting = false;
     }
+
+    private void Awake()
+    {
+        animator = animator ? animator : GetComponent<Animator>();
+
+    }
+
     private void Start()
     {
-        cameraOrientation = GameObject.Find("Player Camera").transform;
         input.FireEvent += HandleFire;
         input.FireCancelEvent += HandleFireCancel;
     }
@@ -47,7 +52,6 @@ public class GunBehaviour : MonoBehaviour
         {
             StartCoroutine(DeactivateMuzzleFlashDelayed());
         }
-        transform.rotation = cameraOrientation.rotation;
     }
     IEnumerator DeactivateMuzzleFlashDelayed()
     {

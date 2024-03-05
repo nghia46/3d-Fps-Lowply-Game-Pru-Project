@@ -4,10 +4,10 @@ namespace Player
 {
     public class FollowPlayer : MonoBehaviour
     {
-        [SerializeField]private GameObject PlayerObjectPos;
+        [SerializeField]private GameObject PlayerPosition;
         void Update()
         {
-            transform.position = PlayerObjectPos.transform.position;
+            transform.position = PlayerPosition.transform.position;
         }
     }
 }
