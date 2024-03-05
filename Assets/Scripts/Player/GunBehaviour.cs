@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class GunBehaviour : MonoBehaviour
 {
-    //[SerializeField] private PlayerInput playerInput;
     [SerializeField] private InputReader input;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform cameraOrientation;
