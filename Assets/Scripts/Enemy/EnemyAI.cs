@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -8,10 +9,14 @@ public class EnemyAI : MonoBehaviour
     private ExplosionEffect explosionEffect;
     private Transform player;
 
+    // Variables for color change
+    [SerializeField]private Renderer enemyRenderer;
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         explosionEffect = GetComponent<ExplosionEffect>();
+
+        
     }
 
     private void Update()
@@ -38,5 +43,20 @@ public class EnemyAI : MonoBehaviour
             explosionEffect.Play(transform.position);
             Destroy(gameObject); // Destroy the enemy GameObject
         }
+
+        // Change the enemy's color to red temporarily
+        StartCoroutine(FlashDamageColor());
+    }
+
+    IEnumerator FlashDamageColor()
+    {
+        // Change the color to red
+        enemyRenderer.material.color = Color.red;
+
+        // Wait for a short duration
+        yield return new WaitForSeconds(0.05f);
+
+        // Reset the color back to the original color
+        enemyRenderer.material.color = Color.white;
     }
 }

@@ -6,8 +6,6 @@ using UnityEngine.InputSystem;
 public class InputReader : ScriptableObject, GameInput.IGamePlayActions
 {
     private GameInput gameInput;
-    private bool fireButtonDown;
-
     private void OnEnable()
     {
         gameInput = new();
@@ -22,9 +20,15 @@ public class InputReader : ScriptableObject, GameInput.IGamePlayActions
     public event Action<Vector2> MoveEvent;
     // Look event
     public event Action<Vector2> MouseEvent;
-    //Fire Event for shooting... using left mouse, trigger(controller) .etc
-    public event Action FireEvent;
-    public event Action FireCancelEvent;
+    //Single Fire Event for shooting... using left mouse, trigger(controller) .etc
+    public event Action SingleFireEvent;
+    public event Action SingleFireCancelEvent;
+    // Burst Fire Event
+    public event Action BurstFireEvent;
+    public event Action BurstFireCancelEvent;
+    // Gun aim Event
+    public event Action GunAimEvent;
+    public event Action GunAimCancelEvent;
     //Jump event
     public event Action JumpEvent;
     public event Action JumpCancelEvent;
@@ -50,15 +54,39 @@ public class InputReader : ScriptableObject, GameInput.IGamePlayActions
         MouseEvent?.Invoke(context.ReadValue<Vector2>());
     }
 
-    public void OnFire(InputAction.CallbackContext context)
+    public void OnFireSingle(InputAction.CallbackContext context)
     {
         switch (context.phase)
         {
             case InputActionPhase.Performed:
-                FireEvent?.Invoke();
+                SingleFireEvent?.Invoke();
                 break;
             case InputActionPhase.Canceled:
-                FireCancelEvent?.Invoke();
+                SingleFireCancelEvent?.Invoke();
+                break;
+        }
+    }
+    public void OnFireBrust(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                BurstFireEvent?.Invoke();
+                break;
+            case InputActionPhase.Canceled:
+                BurstFireCancelEvent?.Invoke();
+                break;
+        }
+    }
+    public void OnGunAim(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                GunAimEvent?.Invoke();
+                break;
+            case InputActionPhase.Canceled:
+                GunAimCancelEvent?.Invoke();
                 break;
         }
     }

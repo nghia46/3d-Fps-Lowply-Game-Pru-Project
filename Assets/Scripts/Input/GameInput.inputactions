@@ -33,9 +33,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fire",
+                    "name": "FireSingle",
                     "type": "Button",
                     "id": "8f55882d-b529-4db1-9957-afac6cd63f6d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FireBrust",
+                    "type": "Button",
+                    "id": "290dc02e-0221-4fd2-85cf-91709b9d4ad8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GunAim",
+                    "type": "Button",
+                    "id": "b7e2355d-c3f8-4a62-b876-627fc3170976",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -127,7 +145,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Fire",
+                    "action": "FireSingle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e9c2109-9937-4fe3-8ff0-cc25b09f6f16",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FireBrust",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f1f7b58-49fe-4cd8-ab7c-b3bcdd4a406c",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GunAim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

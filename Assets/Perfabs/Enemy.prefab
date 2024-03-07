@@ -81,9 +81,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &5945074561466489633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,8 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  health: 10
+  health: 50
   stoppingDistance: 10
+  enemyRenderer: {fileID: 2063263834666805228}
 --- !u!114 &6367333888720476592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,5 +176,10 @@ PrefabInstance:
 --- !u!4 &930278483297721475 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 033426e784db8d543a8b95471755f8c8, type: 3}
+  m_PrefabInstance: {fileID: 820704235751160680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2063263834666805228 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 033426e784db8d543a8b95471755f8c8, type: 3}
   m_PrefabInstance: {fileID: 820704235751160680}
   m_PrefabAsset: {fileID: 0}

@@ -56,9 +56,27 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Fire"",
+                    ""name"": ""FireSingle"",
                     ""type"": ""Button"",
                     ""id"": ""8f55882d-b529-4db1-9957-afac6cd63f6d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FireBrust"",
+                    ""type"": ""Button"",
+                    ""id"": ""290dc02e-0221-4fd2-85cf-91709b9d4ad8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GunAim"",
+                    ""type"": ""Button"",
+                    ""id"": ""b7e2355d-c3f8-4a62-b876-627fc3170976"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -150,7 +168,29 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Fire"",
+                    ""action"": ""FireSingle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e9c2109-9937-4fe3-8ff0-cc25b09f6f16"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FireBrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f1f7b58-49fe-4cd8-ab7c-b3bcdd4a406c"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GunAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -164,7 +204,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_GamePlay_Move = m_GamePlay.FindAction("Move", throwIfNotFound: true);
         m_GamePlay_CameraMoverment = m_GamePlay.FindAction("CameraMoverment", throwIfNotFound: true);
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
-        m_GamePlay_Fire = m_GamePlay.FindAction("Fire", throwIfNotFound: true);
+        m_GamePlay_FireSingle = m_GamePlay.FindAction("FireSingle", throwIfNotFound: true);
+        m_GamePlay_FireBrust = m_GamePlay.FindAction("FireBrust", throwIfNotFound: true);
+        m_GamePlay_GunAim = m_GamePlay.FindAction("GunAim", throwIfNotFound: true);
     }
 
     ~@GameInput()
@@ -234,7 +276,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Move;
     private readonly InputAction m_GamePlay_CameraMoverment;
     private readonly InputAction m_GamePlay_Jump;
-    private readonly InputAction m_GamePlay_Fire;
+    private readonly InputAction m_GamePlay_FireSingle;
+    private readonly InputAction m_GamePlay_FireBrust;
+    private readonly InputAction m_GamePlay_GunAim;
     public struct GamePlayActions
     {
         private @GameInput m_Wrapper;
@@ -242,7 +286,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_GamePlay_Move;
         public InputAction @CameraMoverment => m_Wrapper.m_GamePlay_CameraMoverment;
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
-        public InputAction @Fire => m_Wrapper.m_GamePlay_Fire;
+        public InputAction @FireSingle => m_Wrapper.m_GamePlay_FireSingle;
+        public InputAction @FireBrust => m_Wrapper.m_GamePlay_FireBrust;
+        public InputAction @GunAim => m_Wrapper.m_GamePlay_GunAim;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -261,9 +307,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Fire.started += instance.OnFire;
-            @Fire.performed += instance.OnFire;
-            @Fire.canceled += instance.OnFire;
+            @FireSingle.started += instance.OnFireSingle;
+            @FireSingle.performed += instance.OnFireSingle;
+            @FireSingle.canceled += instance.OnFireSingle;
+            @FireBrust.started += instance.OnFireBrust;
+            @FireBrust.performed += instance.OnFireBrust;
+            @FireBrust.canceled += instance.OnFireBrust;
+            @GunAim.started += instance.OnGunAim;
+            @GunAim.performed += instance.OnGunAim;
+            @GunAim.canceled += instance.OnGunAim;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -277,9 +329,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Fire.started -= instance.OnFire;
-            @Fire.performed -= instance.OnFire;
-            @Fire.canceled -= instance.OnFire;
+            @FireSingle.started -= instance.OnFireSingle;
+            @FireSingle.performed -= instance.OnFireSingle;
+            @FireSingle.canceled -= instance.OnFireSingle;
+            @FireBrust.started -= instance.OnFireBrust;
+            @FireBrust.performed -= instance.OnFireBrust;
+            @FireBrust.canceled -= instance.OnFireBrust;
+            @GunAim.started -= instance.OnGunAim;
+            @GunAim.performed -= instance.OnGunAim;
+            @GunAim.canceled -= instance.OnGunAim;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -302,6 +360,8 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnCameraMoverment(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnFire(InputAction.CallbackContext context);
+        void OnFireSingle(InputAction.CallbackContext context);
+        void OnFireBrust(InputAction.CallbackContext context);
+        void OnGunAim(InputAction.CallbackContext context);
     }
 }

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5d490fe61461e604bbc214f89b37f751
+timeCreated: 1506572392
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 101433
+  packageName: Stone Monster
+  packageVersion: 1.0
+  assetPath: Assets/amusedART/StoneMonster/Materials/Ground.mat
+  uploadId: 203309

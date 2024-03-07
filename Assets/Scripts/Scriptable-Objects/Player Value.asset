@@ -16,4 +16,4 @@ MonoBehaviour:
   groundDistance: 1.8
   speed: 15
   jumpHeight: 5
-  sensitivity: 16.5
+  sensitivity: 10
