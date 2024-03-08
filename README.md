@@ -1,5 +1,7 @@
 # Game name: Colosium Area
 ## DevLog
+### Last Preview
+![Preview](day4.gif)
 ### Day 1
 - Make Model (Gun,Player,Colosium) as a prototype(DIY)
 - FPS controller
@@ -21,6 +23,5 @@
 - Object pool for particle and (Enemy?)
 ![](https://i.ibb.co/dgQTFJX/untitled.jpg)
 
-### Day 4
-![](day4.gif)
+
 
