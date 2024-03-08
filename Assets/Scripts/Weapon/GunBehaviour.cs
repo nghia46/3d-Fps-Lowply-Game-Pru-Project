@@ -4,22 +4,15 @@ using UnityEngine;
 public class GunBehaviour : MonoBehaviour
 {
     // Serialized fields for easy tweaking in the Unity editor
+    [SerializeField] private Gun gun;
     [SerializeField] private InputReader input; // Reference to the input reader component
     [SerializeField] private Animator animator; // Reference to the animator component
     [SerializeField] private Transform muzzle; // Reference to the muzzle transform
     [SerializeField] private GameObject bulletHolePrefab; // Prefab for the bullet hole effect
-    [Tooltip("Damage dealt by each bullet")]
-    [SerializeField] private float damage; // Damage dealt by each bullet
-    [Tooltip("Maximum distance a bullet can travel")]
-    [SerializeField] private float maxDistance = 100f; // Maximum distance a bullet can travel
-    [SerializeField] private float muzzleFlashDuration; // Duration for which the muzzle flash remains visible
-    [Tooltip("Number of bullets fired per shot")]
-    [SerializeField] private int numberOfBulletFire; // Number of bullets fired per shot
-    [Tooltip("Angle by which bullets can deviate from the muzzle direction")]
-    [SerializeField] private float spreadAngle; // Angle by which bullets can deviate from the muzzle direction
 
     // Private variables to track burst fire and shooting cooldown
-    private bool isBursting;
+    private bool isShooting;
+    private bool isAiming;
     private bool canShoot = true;
 
     // Awake method is called when the script instance is being loaded
@@ -35,25 +28,46 @@ public class GunBehaviour : MonoBehaviour
         // Subscribe to input events for firing and canceling firing
         input.FireEvent += HandleFire;
         input.FireCancelEvent += HandheldFireCancel;
+        input.GunAimEvent += HandleAim;
     }
 
     // Update method is called once per frame
     private void Update()
     {
+        // Update the animator parameter for aiming
+        animator.SetBool("isAiming", isAiming);
+
+        // Draw a ray from the muzzle for visualization
+        Debug.DrawRay(muzzle.position, muzzle.forward * gun.MaxDistance, Color.red);
+
         // Check if the muzzle flash is active and deactivate it after the specified duration
         if (muzzle.transform.GetChild(0).gameObject.activeSelf)
         {
             StartCoroutine(DeactivateMuzzleFlashDelayed());
         }
     }
-
+    private void LateUpdate()
+    {
+        if (!isAiming)
+        {
+            CrosshairBehaviour.Instance.TurnOnCrosshair();
+        }
+        else
+        {
+            CrosshairBehaviour.Instance.TurnOffCrosshair();
+        }
+    }
+    private void HandleAim()
+    {
+        isAiming = !isAiming;
+    }
     // Method to handle the fire event
     private void HandleFire()
     {
         // Start burst fire coroutine if not already bursting
-        if (!isBursting)
+        if (!isShooting)
         {
-            isBursting = true;
+            isShooting = true;
             StartCoroutine(BurstFireCoroutine());
         }
     }
@@ -61,24 +75,24 @@ public class GunBehaviour : MonoBehaviour
     // Method to handle canceling of fire event
     private void HandheldFireCancel()
     {
-        isBursting = false; // Stop burst firing
+        isShooting = false; // Stop burst firing
     }
 
     // Coroutine for burst firing
     private IEnumerator BurstFireCoroutine()
     {
         // Continuously shoot while bursting
-        while (isBursting)
+        while (isShooting)
         {
             Shoot(); // Call the shoot method
-            yield return new WaitForSeconds(0.1f); // Wait between shots
+            yield return new WaitForSeconds(gun.BrustingRate); // Wait between shots
         }
     }
 
     // Coroutine to deactivate muzzle flash after a delay
     private IEnumerator DeactivateMuzzleFlashDelayed()
     {
-        yield return new WaitForSeconds(muzzleFlashDuration);
+        yield return new WaitForSeconds(gun.MuzzleFlashDuration);
         muzzle.transform.GetChild(0).gameObject.SetActive(false);
     }
 
@@ -96,18 +110,25 @@ public class GunBehaviour : MonoBehaviour
     private IEnumerator ShootWithDelay()
     {
         canShoot = false; // Prevent shooting until the delay is over
-
-        animator.SetTrigger("Shoot"); // Trigger shoot animation
+        if (!isAiming)
+        {
+            CrosshairBehaviour.Instance.TurnOnCrosshair();
+            animator.SetTrigger("Shoot"); // Trigger shoot animation
+        }
+        else
+        {
+            CrosshairBehaviour.Instance.TurnOffCrosshair();
+            animator.SetTrigger("AimShoot");
+        }
         muzzle.GetChild(0).gameObject.SetActive(true); // Activate muzzle flash effect
 
         // Fire multiple bullets
-        for (int i = 0; i < numberOfBulletFire; i++)
+        for (int i = 0; i < gun.NumberOfBulletFire; i++)
         {
             Vector3 direction = CalculateBulletDirection(); // Calculate bullet direction
-            RaycastHit hit; // Variable to store hit information
 
             // Raycast to detect hits
-            if (Physics.Raycast(muzzle.position, direction, out hit, maxDistance))
+            if (Physics.Raycast(muzzle.position, direction, out RaycastHit hit, gun.MaxDistance))
             {
                 HandleHit(hit); // Handle the hit
             }
@@ -125,8 +146,8 @@ public class GunBehaviour : MonoBehaviour
     {
         Vector3 direction = muzzle.forward; // Initial direction is forward
         // Apply random spread within the specified angle
-        direction = Quaternion.AngleAxis(Random.Range(-spreadAngle, spreadAngle), muzzle.right) * direction;
-        direction = Quaternion.AngleAxis(Random.Range(-spreadAngle, spreadAngle), muzzle.up) * direction;
+        direction = Quaternion.AngleAxis(Random.Range(-gun.SpreadAngle, gun.SpreadAngle), muzzle.right) * direction;
+        direction = Quaternion.AngleAxis(Random.Range(-gun.SpreadAngle, gun.SpreadAngle), muzzle.up) * direction;
         return direction; // Return the calculated direction
     }
 
@@ -134,29 +155,19 @@ public class GunBehaviour : MonoBehaviour
     private void HandleHit(RaycastHit hit)
     {
         // Check if the hit object is an enemy
-        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            var enemyAI = hit.transform.GetComponent<EnemyAI>(); // Get the enemy AI component
-            if (enemyAI != null)
-            {
-                enemyAI.OnDamage(damage); // Damage the enemy
-            }
-        }
-        else
-        {
-            InstantiateBulletHole(hit); // Instantiate bullet hole effect for non-enemy objects
-        }
+        if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy")) InstantiateBulletHole(hit);
+        var enemyAI = hit.transform.GetComponent<EnemyAI>(); // Get the enemy AI component
+        if (enemyAI != null) enemyAI.OnDamage(gun.Damage); // Damage the enemy
     }
 
     // Method to instantiate bullet hole effect at hit position
     private void InstantiateBulletHole(RaycastHit hit)
     {
         // Check if bullet hole prefab is assigned
-        if (bulletHolePrefab != null)
-        {
-            Vector3 gapOffset = hit.normal * 0.01f; // Offset to prevent z-fighting
-            // Instantiate bullet hole with appropriate rotation and parent it to the GarbagePool
-            Instantiate(bulletHolePrefab, hit.point + gapOffset, Quaternion.LookRotation(hit.normal, Vector3.up), GameObject.Find("GarbagePool").transform);
-        }
+        if (bulletHolePrefab == null) return;
+        Vector3 gapOffset = hit.normal * 0.01f; // Offset to prevent z-fighting
+        // Instantiate bullet hole with appropriate rotation and parent it to the GarbagePool
+        Instantiate(bulletHolePrefab, hit.point + gapOffset, Quaternion.LookRotation(hit.normal, Vector3.up), GameObject.Find("GarbagePool").transform);
+
     }
 }

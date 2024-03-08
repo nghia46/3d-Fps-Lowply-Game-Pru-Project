@@ -590,15 +590,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ccff7d3b0c42f4a9d66cfd5042fce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun: {fileID: 11400000, guid: a7d619f56d3f7224a8fba9f541f55ff3, type: 2}
   input: {fileID: 11400000, guid: 5bf3744bcf56e714faaa4863c2d2da09, type: 2}
   animator: {fileID: 0}
   muzzle: {fileID: 2364151218416789572}
   bulletHolePrefab: {fileID: 8824825103501952475, guid: 3e527afe2f23c594185ad3426be1547e, type: 3}
-  damage: 10
-  maxDistance: 9999
-  muzzleFlashDuration: 0.05
-  numberOfBulletFire: 1
-  spreadAngle: 1
 --- !u!1001 &2889453543820715879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -641,7 +637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.112
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
       propertyPath: m_LocalRotation.w
@@ -649,15 +645,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.70710677
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -665,7 +661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
