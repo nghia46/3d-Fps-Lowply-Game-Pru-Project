@@ -22,4 +22,4 @@
 ![](https://i.ibb.co/dgQTFJX/untitled.jpg)
 
 ### Day 4
-![](https://s9.gifyu.com/images/SUTtc.gif)
+![Alt Text](https://s9.gifyu.com/images/SUTtc.gif)
