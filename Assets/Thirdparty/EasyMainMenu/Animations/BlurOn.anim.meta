@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 68cda992b54d1cb4aa2c3cca70c34e1a
+timeCreated: 1506693168
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106495
+  packageName: Easy Main Menu Free
+  packageVersion: 1.0
+  assetPath: Assets/EasyMainMenu/Animations/BlurOn.anim
+  uploadId: 224384

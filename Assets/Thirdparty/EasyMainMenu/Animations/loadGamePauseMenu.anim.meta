@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 749bc3bda18132343a3d9e61d14ff49e
+timeCreated: 1508060342
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106495
+  packageName: Easy Main Menu Free
+  packageVersion: 1.0
+  assetPath: Assets/EasyMainMenu/Animations/loadGamePauseMenu.anim
+  uploadId: 224384

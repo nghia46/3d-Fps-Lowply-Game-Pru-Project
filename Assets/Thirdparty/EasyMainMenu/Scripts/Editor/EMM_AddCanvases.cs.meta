@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: ec05abb689b64954a9efba78993e18e0
+timeCreated: 1509862267
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106495
+  packageName: Easy Main Menu Free
+  packageVersion: 1.0
+  assetPath: Assets/EasyMainMenu/Scripts/Editor/EMM_AddCanvases.cs
+  uploadId: 224384

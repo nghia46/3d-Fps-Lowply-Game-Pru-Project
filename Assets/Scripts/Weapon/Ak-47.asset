@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 10
   MaxDistance: 300
-  MuzzleFlashDuration: 0.1
+  MuzzleFlashDuration: 0.05
   NumberOfBulletFire: 1
-  SpreadAngle: 0.09
+  SpreadAngle: 0.1
   BrustingRate: 0.03

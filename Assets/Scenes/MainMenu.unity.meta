@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c09f4b0b2a9226946aa44a3dd8ffdfa6
+timeCreated: 1502625194
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106495
+  packageName: Easy Main Menu Free
+  packageVersion: 1.0
+  assetPath: Assets/EasyMainMenu/Scenes/MainMenu.unity
+  uploadId: 224384

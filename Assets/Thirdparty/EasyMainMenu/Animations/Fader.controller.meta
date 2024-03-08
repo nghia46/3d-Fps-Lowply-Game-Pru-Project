@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7180effec24fcf94d8a1ce0b40930668
+timeCreated: 1502860508
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106495
+  packageName: Easy Main Menu Free
+  packageVersion: 1.0
+  assetPath: Assets/EasyMainMenu/Animations/Fader.controller
+  uploadId: 224384

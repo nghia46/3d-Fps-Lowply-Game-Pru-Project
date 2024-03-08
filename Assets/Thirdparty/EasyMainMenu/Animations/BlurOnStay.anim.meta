@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d4969acab0bec6c4d80f05b265a647cc
+timeCreated: 1506693168
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106495
+  packageName: Easy Main Menu Free
+  packageVersion: 1.0
+  assetPath: Assets/EasyMainMenu/Animations/BlurOnStay.anim
+  uploadId: 224384

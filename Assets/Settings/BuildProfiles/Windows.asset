@@ -17,7 +17,11 @@ MonoBehaviour:
   m_ModuleName: WindowsStandalone
   m_PlatformBuildProfile:
     rid: 5192529552124411904
-  m_Scenes: []
+  m_Scenes:
+  - m_enabled: 1
+    m_path: Assets/Scenes/MainMenu.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Game Scene.unity
   references:
     version: 2
     RefIds:

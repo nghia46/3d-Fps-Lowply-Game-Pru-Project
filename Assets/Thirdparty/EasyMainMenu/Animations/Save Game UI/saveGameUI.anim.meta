@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 210ca8e1ee0292b4b97feeeb7221c00b
+timeCreated: 1502706728
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106495
+  packageName: Easy Main Menu Free
+  packageVersion: 1.0
+  assetPath: Assets/EasyMainMenu/Animations/Save Game UI/saveGameUI.anim
+  uploadId: 224384

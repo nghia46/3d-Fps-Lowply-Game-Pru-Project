@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 62c936eb2f7ddb640927fbd160b6574d
+timeCreated: 1512398182
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106495
+  packageName: Easy Main Menu Free
+  packageVersion: 1.0
+  assetPath: Assets/EasyMainMenu/Resources/Prefabs/MainMenu.prefab
+  uploadId: 224384

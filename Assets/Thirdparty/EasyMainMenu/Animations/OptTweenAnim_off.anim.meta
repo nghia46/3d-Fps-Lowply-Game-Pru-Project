@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 36e9b89c6dba3be43bd8edca5f736c74
+timeCreated: 1502645695
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106495
+  packageName: Easy Main Menu Free
+  packageVersion: 1.0
+  assetPath: Assets/EasyMainMenu/Animations/OptTweenAnim_off.anim
+  uploadId: 224384

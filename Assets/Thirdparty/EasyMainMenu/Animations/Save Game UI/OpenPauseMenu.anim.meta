@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5d4ef03db6f627d45ada48408cd661c4
+timeCreated: 1502801558
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106495
+  packageName: Easy Main Menu Free
+  packageVersion: 1.0
+  assetPath: Assets/EasyMainMenu/Animations/Save Game UI/OpenPauseMenu.anim
+  uploadId: 224384

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 79a3da47daeb8fb48a3eef381b497fb6
+timeCreated: 1502646295
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106495
+  packageName: Easy Main Menu Free
+  packageVersion: 1.0
+  assetPath: Assets/EasyMainMenu/Animations/MainMenu.controller
+  uploadId: 224384

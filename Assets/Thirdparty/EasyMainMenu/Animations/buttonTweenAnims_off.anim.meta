@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ba81920791c5c3d4a891df59c87389d7
+timeCreated: 1502645653
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106495
+  packageName: Easy Main Menu Free
+  packageVersion: 1.0
+  assetPath: Assets/EasyMainMenu/Animations/buttonTweenAnims_off.anim
+  uploadId: 224384

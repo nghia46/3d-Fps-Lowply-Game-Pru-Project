@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 07e2fe0fa967104458cef2a23143432a
+timeCreated: 1502728164
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 106495
+  packageName: Easy Main Menu Free
+  packageVersion: 1.0
+  assetPath: Assets/EasyMainMenu/Animations/Save Game UI/confirmUI_open.anim
+  uploadId: 224384
