@@ -4,7 +4,7 @@
 - Make Model (Gun,Player,Colosium) as a prototype(DIY)
 - FPS controller
 - GunFollow Player
-  ![](https://i.ibb.co/kDMKN91/untitled.jpg)
+![](https://i.ibb.co/kDMKN91/untitled.jpg)
 
 ### Day 2
 - Fix camera hand
