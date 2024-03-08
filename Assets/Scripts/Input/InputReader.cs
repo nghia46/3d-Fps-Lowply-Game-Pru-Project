@@ -21,11 +21,8 @@ public class InputReader : ScriptableObject, GameInput.IGamePlayActions
     // Look event
     public event Action<Vector2> MouseEvent;
     //Single Fire Event for shooting... using left mouse, trigger(controller) .etc
-    public event Action SingleFireEvent;
-    public event Action SingleFireCancelEvent;
-    // Burst Fire Event
-    public event Action BurstFireEvent;
-    public event Action BurstFireCancelEvent;
+    public event Action FireEvent;
+    public event Action FireCancelEvent;
     // Gun aim Event
     public event Action GunAimEvent;
     public event Action GunAimCancelEvent;
@@ -54,27 +51,15 @@ public class InputReader : ScriptableObject, GameInput.IGamePlayActions
         MouseEvent?.Invoke(context.ReadValue<Vector2>());
     }
 
-    public void OnFireSingle(InputAction.CallbackContext context)
+    public void OnFire(InputAction.CallbackContext context)
     {
         switch (context.phase)
         {
             case InputActionPhase.Performed:
-                SingleFireEvent?.Invoke();
+                FireEvent?.Invoke();
                 break;
             case InputActionPhase.Canceled:
-                SingleFireCancelEvent?.Invoke();
-                break;
-        }
-    }
-    public void OnFireBrust(InputAction.CallbackContext context)
-    {
-        switch (context.phase)
-        {
-            case InputActionPhase.Performed:
-                BurstFireEvent?.Invoke();
-                break;
-            case InputActionPhase.Canceled:
-                BurstFireCancelEvent?.Invoke();
+                FireCancelEvent?.Invoke();
                 break;
         }
     }
