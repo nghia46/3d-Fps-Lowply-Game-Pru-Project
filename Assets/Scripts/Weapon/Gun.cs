@@ -13,6 +13,6 @@ public class Gun : ScriptableObject
     [Tooltip("Angle by which bullets can deviate from the muzzle direction")]
     public float SpreadAngle; // Angle by which bullets can deviate from the muzzle direction
     [Tooltip("Shoot rate while brusting (per/s)")]
-    [Range(0,5)]
+    [Range(0, 5)]
     public float BrustingRate;
 }

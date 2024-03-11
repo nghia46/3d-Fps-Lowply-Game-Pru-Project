@@ -11,9 +11,9 @@ public class GunBehaviour : MonoBehaviour
     [SerializeField] private GameObject bulletHolePrefab; // Prefab for the bullet hole effect
 
     // Private variables to track burst fire and shooting cooldown
-    private bool isShooting;
-    private bool isAiming;
-    private bool canShoot = true;
+    bool isShooting;
+    bool isAiming;
+    bool canShoot = true;
 
     // Awake method is called when the script instance is being loaded
     private void Awake()

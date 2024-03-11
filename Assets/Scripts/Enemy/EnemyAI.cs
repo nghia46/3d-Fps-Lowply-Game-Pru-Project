@@ -3,20 +3,17 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float health;
-    [SerializeField] private float stoppingDistance = 10f;
+    [SerializeField] public Enemy enemy;
     private ExplosionEffect explosionEffect;
     private Transform player;
-
+    public int CurrentHealth;
     // Variables for color change
-    [SerializeField]private Renderer enemyRenderer;
+    [SerializeField] private Renderer enemyRenderer;
     private void Awake()
     {
+        CurrentHealth = enemy.MaxHealth;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         explosionEffect = GetComponent<ExplosionEffect>();
-
-        
     }
 
     private void Update()
@@ -25,21 +22,21 @@ public class EnemyAI : MonoBehaviour
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distanceToPlayer > stoppingDistance)
+        if (distanceToPlayer > enemy.StoppingDistance)
         {
-            transform.Translate(moveSpeed * Time.deltaTime * Vector3.forward);
+            transform.Translate(enemy.Speed * Time.deltaTime * Vector3.forward);
         }
     }
 
-    public void OnDamage(float damage)
+    public void OnDamage(int damage)
     {
-        if (health > damage)
+        if (enemy.MaxHealth >= damage)
         {
-            health -= damage;
+            CurrentHealth -= damage;
         }
-        else
+        if (CurrentHealth <= 0)
         {
-            health = 0; // Ensure health is not negative
+            // /CurrentHealth = 0; // Ensure health is not negative
             explosionEffect.Play(transform.position);
             Destroy(gameObject); // Destroy the enemy GameObject
         }
@@ -47,7 +44,10 @@ public class EnemyAI : MonoBehaviour
         // Change the enemy's color to red temporarily
         StartCoroutine(FlashDamageColor());
     }
-
+    private void OnDestroy()
+    {
+        EventManager.Instance.StartScoreEvent(enemy.Id, enemy.Score);
+    }
     IEnumerator FlashDamageColor()
     {
         // Change the color to red
