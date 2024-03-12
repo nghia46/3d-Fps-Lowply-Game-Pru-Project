@@ -4,14 +4,15 @@ using UnityEngine;
 public class GunBehaviour : MonoBehaviour
 {
     // Serialized fields for easy tweaking in the Unity editor
-    [SerializeField] private Gun gun;
+    public Gun gun;
     [SerializeField] private InputReader input; // Reference to the input reader component
     [SerializeField] private Animator animator; // Reference to the animator component
     [SerializeField] private Transform muzzle; // Reference to the muzzle transform
     [SerializeField] private GameObject bulletHolePrefab; // Prefab for the bullet hole effect
-
+    public int CurrentBullet;
     // Private variables to track burst fire and shooting cooldown
     bool isShooting;
+    bool isReloading;
     bool isAiming;
     bool canShoot = true;
 
@@ -25,6 +26,7 @@ public class GunBehaviour : MonoBehaviour
     // Start method is called before the first frame update
     private void Start()
     {
+        CurrentBullet = gun.MaxMagazine;
         // Subscribe to input events for firing and canceling firing
         input.FireEvent += HandleFire;
         input.FireCancelEvent += HandheldFireCancel;
@@ -77,7 +79,30 @@ public class GunBehaviour : MonoBehaviour
     {
         isShooting = false; // Stop burst firing
     }
+    // Method to handle reload action
+    private void Reload()
+    {
+        if (!isReloading && CurrentBullet < gun.MaxMagazine)
+        {
+            isReloading = true;
+            StartCoroutine(ReloadCoroutine());
+        }
+    }
+    // Coroutine for the reloading process
+    private IEnumerator ReloadCoroutine()
+    {
+        // Play reload animation or perform any visual feedback
+        //animator.SetTrigger("Reload");
 
+        // Wait for the reload animation duration
+        yield return new WaitForSeconds(gun.ReloadDuration);
+
+        // Refill the magazine
+        CurrentBullet = gun.MaxMagazine;
+
+        // Reset reloading flag
+        isReloading = false;
+    }
     // Coroutine for burst firing
     private IEnumerator BurstFireCoroutine()
     {
@@ -100,15 +125,20 @@ public class GunBehaviour : MonoBehaviour
     private void Shoot()
     {
         // If allowed to shoot, start shooting coroutine
-        if (canShoot)
+        if (canShoot && CurrentBullet > 0)
         {
             StartCoroutine(ShootWithDelay());
+        }
+        else if (CurrentBullet >= 0)
+        {
+            Reload();
         }
     }
 
     // Coroutine to handle shooting logic with delay
     private IEnumerator ShootWithDelay()
     {
+        CurrentBullet--;
         canShoot = false; // Prevent shooting until the delay is over
         if (!isAiming)
         {

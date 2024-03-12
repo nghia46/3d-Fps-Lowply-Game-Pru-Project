@@ -46,7 +46,7 @@ namespace Player
 
         private void Update()
         {
-
+            Teleport();
             UpdateGroundedStatus();
 
             if (isGrounded && IsFalling())
@@ -106,6 +106,10 @@ namespace Player
         private void RotatePlayerOrientation(Transform orientation)
         {
             transform.rotation = Quaternion.Euler(0, orientation.rotation.eulerAngles.y, 0);
+        }
+        private void Teleport()
+        {
+            
         }
     }
 }

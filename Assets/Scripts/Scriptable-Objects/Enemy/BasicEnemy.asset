@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   Score: 10
-  MaxHealth: 100
+  MaxHealth: 20
   Damage: 10
   Speed: 10
   StoppingDistance: 10

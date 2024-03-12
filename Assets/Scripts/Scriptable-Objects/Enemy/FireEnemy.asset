@@ -17,4 +17,4 @@ MonoBehaviour:
   MaxHealth: 50
   Damage: 40
   Speed: 50
-  StoppingDistance: 14
+  StoppingDistance: 20

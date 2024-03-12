@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Ak-47
   m_EditorClassIdentifier: 
   Damage: 10
+  MaxMagazine: 27
   MaxDistance: 300
   MuzzleFlashDuration: 0.05
   NumberOfBulletFire: 1
   SpreadAngle: 0.1
   BrustingRate: 0.03
+  ReloadDuration: 5

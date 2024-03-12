@@ -5,6 +5,8 @@ public class Gun : ScriptableObject
 {
     [Tooltip("Damage dealt by each bullet")]
     public int Damage = 10;
+    [Tooltip("Max Magazine")]
+    public int MaxMagazine = 27;
     [Tooltip("Ther farest the ray can shoot")]
     public float MaxDistance = 100f;
     public float MuzzleFlashDuration;
@@ -15,4 +17,6 @@ public class Gun : ScriptableObject
     [Tooltip("Shoot rate while brusting (per/s)")]
     [Range(0, 5)]
     public float BrustingRate;
+
+    public float ReloadDuration;
 }
