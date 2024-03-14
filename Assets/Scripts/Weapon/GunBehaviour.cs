@@ -84,16 +84,18 @@ public class GunBehaviour : MonoBehaviour
     {
         if (!isReloading && CurrentBullet < gun.MaxMagazine)
         {
+
             isReloading = true;
+
             StartCoroutine(ReloadCoroutine());
         }
     }
     // Coroutine for the reloading process
     private IEnumerator ReloadCoroutine()
     {
+
         // Play reload animation or perform any visual feedback
         //animator.SetTrigger("Reload");
-
         // Wait for the reload animation duration
         yield return new WaitForSeconds(gun.ReloadDuration);
 
@@ -102,6 +104,8 @@ public class GunBehaviour : MonoBehaviour
 
         // Reset reloading flag
         isReloading = false;
+
+ 
     }
     // Coroutine for burst firing
     private IEnumerator BurstFireCoroutine()

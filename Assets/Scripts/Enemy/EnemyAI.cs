@@ -7,10 +7,15 @@ public class EnemyAI : MonoBehaviour
     private ExplosionEffect explosionEffect;
     private Transform player;
     public int CurrentHealth;
+    private float attackCooldown = 2f; // Cooldown period between attacks
+
     // Variables for color change
     [SerializeField] private Renderer enemyRenderer;
+    private bool canAttack;
+
     private void Awake()
     {
+        canAttack = true;
         CurrentHealth = enemy.MaxHealth;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         explosionEffect = GetComponent<ExplosionEffect>();
@@ -26,8 +31,38 @@ public class EnemyAI : MonoBehaviour
         {
             transform.Translate(enemy.Speed * Time.deltaTime * Vector3.forward);
         }
-    }
+        else
+        {
+            // Player is within attack range, check if can attack
+            if (canAttack)
+            {
+                // Perform the attack
+                Attack();
 
+                // Set attack cooldown
+                StartCoroutine(AttackCooldown());
+            }
+        }
+    }
+    private void Attack()
+    {
+        // Perform attack logic here
+        // For example, you can damage the player or trigger an attack animation
+
+        // For demonstration purposes, let's just log a message
+        Debug.Log("Enemy attacked!");
+    }
+    private IEnumerator AttackCooldown()
+    {
+        // Set canAttack flag to false to prevent further attacks during cooldown
+        canAttack = false;
+
+        // Wait for attackCooldown duration
+        yield return new WaitForSeconds(attackCooldown);
+
+        // Set canAttack flag to true after cooldown period
+        canAttack = true;
+    }
     public void OnDamage(int damage)
     {
         if (enemy.MaxHealth >= damage)

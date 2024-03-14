@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerValue : ScriptableObject
 {
+    [Tooltip("Player Health")]
+    public int MaxHealth = 100;
     [Tooltip("Trọng lực kéo player xuống")]
     public float Gravity = -9.18f * 4f;
     [Tooltip("Độ lớn của của raycast có thể nhảy")]
