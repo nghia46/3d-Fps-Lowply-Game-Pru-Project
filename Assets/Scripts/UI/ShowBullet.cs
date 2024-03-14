@@ -24,11 +24,11 @@ public class ShowBullet : MonoBehaviour
         if (gunBehaviour != null && gunBehaviour.CurrentBullet > 0)
         {
             // Retrieve the current bullet count from the GunBehaviour script
-            bulletTxt.text = $"Magazine: {gunBehaviour.CurrentBullet}/{gunBehaviour.gun.MaxMagazine}";
+            bulletTxt.text = $"<color=red>{gunBehaviour.CurrentBullet}</color>/{gunBehaviour.gun.MaxMagazine}";
         }
         else
         {
-            bulletTxt.text = "Magazine: <color=yellow> Realoading... </color>";
+            bulletTxt.text = "<color=yellow>Realoading... </color>";
         }
     }
 }

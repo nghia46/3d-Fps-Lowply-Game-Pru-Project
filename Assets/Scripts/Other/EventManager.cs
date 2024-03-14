@@ -4,6 +4,7 @@ public class EventManager : MonoBehaviour
 {
     public static EventManager Instance;
     public event Action<int, int> ScoreEvent;
+    public event Action FireEvent;
     private void Awake()
     {
         if (Instance == null)
@@ -19,4 +20,9 @@ public class EventManager : MonoBehaviour
     {
         ScoreEvent?.Invoke(id, score);
     }
+    public void StartFireEvent()
+    {
+        FireEvent?.Invoke();
+    }
+
 }

@@ -17,7 +17,7 @@ public class UpdatePoint : MonoBehaviour
 
     private void Start()
     {
-        _txtScore.text = $"<color=Yellow>Score</color>: {score}";
+        _txtScore.text = $"<color=Yellow>Score:</color> {score}";
         EventManager.Instance.ScoreEvent += UpdateScore;
     }
 

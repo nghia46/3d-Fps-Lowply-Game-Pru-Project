@@ -140,6 +140,7 @@ public class GunBehaviour : MonoBehaviour
     {
         CurrentBullet--;
         canShoot = false; // Prevent shooting until the delay is over
+        EventManager.Instance.StartFireEvent();
         if (!isAiming)
         {
             CrosshairBehaviour.Instance.TurnOnCrosshair();
