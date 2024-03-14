@@ -85,7 +85,6 @@ namespace Player
                 isGrounded = false;
             }
         }
-
         private void MovePlayer(float speed)
         {
             var move = (transform.right * moveDir.x) + (transform.forward * moveDir.y);

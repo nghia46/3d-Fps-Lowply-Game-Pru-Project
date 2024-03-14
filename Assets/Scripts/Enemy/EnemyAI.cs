@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] public Enemy enemy;
+    [SerializeField] PlayerBehaviour playerBehaviour;
     private ExplosionEffect explosionEffect;
     private Transform player;
     public int CurrentHealth;
@@ -48,9 +49,15 @@ public class EnemyAI : MonoBehaviour
     {
         // Perform attack logic here
         // For example, you can damage the player or trigger an attack animation
+        Debug.Log("Enemy attacked!");
 
         // For demonstration purposes, let's just log a message
-        Debug.Log("Enemy attacked!");
+        playerBehaviour = FindAnyObjectByType<PlayerBehaviour>();
+        if (playerBehaviour != null)
+        {
+            playerBehaviour.TakeDamage(20);
+        }
+
     }
     private IEnumerator AttackCooldown()
     {
