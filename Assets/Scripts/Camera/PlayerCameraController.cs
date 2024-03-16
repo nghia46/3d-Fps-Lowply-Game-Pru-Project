@@ -1,5 +1,5 @@
+using Camera;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -10,15 +10,10 @@ namespace Player
         [SerializeField] private Transform playerOrientation;
         private Vector2 rotation;
         private Vector2 mouseDir;
-
-        private void Awake()
+        private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-        }
-
-        private void Start()
-        {
             input.MouseEvent += HandleMouse;
         }
 

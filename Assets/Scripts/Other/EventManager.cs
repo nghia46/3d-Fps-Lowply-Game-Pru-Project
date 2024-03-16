@@ -6,6 +6,7 @@ public class EventManager : MonoBehaviour
     public event Action<int, int> ScoreEvent;
     public event Action FireEvent;
     public event Action ReloadingEvent;
+    public event Action GameOverEvent;
 
     private void Awake()
     {
@@ -29,5 +30,9 @@ public class EventManager : MonoBehaviour
     public void StartReloadEvent()
     {
         ReloadingEvent?.Invoke();
+    }
+    public void StartGameOverEvent()
+    {
+        GameOverEvent?.Invoke();
     }
 }

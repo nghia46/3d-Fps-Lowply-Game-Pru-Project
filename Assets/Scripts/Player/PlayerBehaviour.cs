@@ -27,6 +27,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         // Implement death logic here
         Debug.Log("Player died!");
+        EventManager.Instance.StartGameOverEvent();
         // For example, you can show a game over screen, restart the level, or perform other actions
         // You might want to reset the player's position, reset their health, etc.
     }

@@ -66,6 +66,12 @@ public class GunBehaviour : MonoBehaviour
     // Method to handle the fire event
     private void HandleFire()
     {
+        // Check if the object is destroyed before starting the coroutine
+        if (!this || !gameObject)
+        {
+            return;
+        }
+
         // Start burst fire coroutine if not already bursting
         if (!isShooting)
         {
@@ -105,7 +111,7 @@ public class GunBehaviour : MonoBehaviour
         // Reset reloading flag
         isReloading = false;
 
- 
+
     }
     // Coroutine for burst firing
     private IEnumerator BurstFireCoroutine()
@@ -198,11 +204,18 @@ public class GunBehaviour : MonoBehaviour
     // Method to instantiate bullet hole effect at hit position
     private void InstantiateBulletHole(RaycastHit hit)
     {
-        // Check if bullet hole prefab is assigned
-        if (bulletHolePrefab == null) return;
-        Vector3 gapOffset = hit.normal * 0.01f; // Offset to prevent z-fighting
-        // Instantiate bullet hole with appropriate rotation and parent it to the GarbagePool
-        Instantiate(bulletHolePrefab, hit.point + gapOffset, Quaternion.LookRotation(hit.normal, Vector3.up), GameObject.Find("GarbagePool").transform);
+        // Check if bullet hole prefab is assigned and if the hit object is still active
+        if (bulletHolePrefab == null || !hit.transform.gameObject.activeInHierarchy) return;
 
+        Vector3 gapOffset = hit.normal * 0.01f; // Offset to prevent z-fighting
+
+        // Instantiate bullet hole with appropriate rotation and parent it to the GarbagePool
+        GameObject bulletHole = Instantiate(bulletHolePrefab, hit.point + gapOffset, Quaternion.LookRotation(hit.normal, Vector3.up));
+        bulletHole.transform.parent = GameObject.Find("GarbagePool").transform;
+    }
+    private void OnDestroy()
+    {
+        // Stop all coroutines when the object is destroyed
+        StopAllCoroutines();
     }
 }
