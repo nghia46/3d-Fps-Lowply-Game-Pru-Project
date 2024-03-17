@@ -1559,7 +1559,7 @@ Transform:
   m_GameObject: {fileID: 1266618566}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.08880615, y: 26.864227, z: -0.88009644}
+  m_LocalPosition: {x: -0.08880615, y: 47.16, z: -0.88009644}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2046,10 +2046,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyPool
       objectReference: {fileID: 0}
-    - target: {fileID: 3581951709374818383, guid: ff11c437a67bd4746981c1af700607f7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5722625827954676014, guid: ff11c437a67bd4746981c1af700607f7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 184.69408
@@ -2091,21 +2087,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8480066392674287710, guid: ff11c437a67bd4746981c1af700607f7, type: 3}
-      propertyPath: numberOfEnemies
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8480066392674287710, guid: ff11c437a67bd4746981c1af700607f7, type: 3}
       propertyPath: enemyPrefabs.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8480066392674287710, guid: ff11c437a67bd4746981c1af700607f7, type: 3}
-      propertyPath: 'enemyPrefabs.Array.data[0]'
+      propertyPath: 'enemyPrefabs.Array.data[2]'
       value: 
-      objectReference: {fileID: 3502180067610029460, guid: 06febb2f1ae2b44459768db95d3024e3, type: 3}
-    - target: {fileID: 8480066392674287710, guid: ff11c437a67bd4746981c1af700607f7, type: 3}
-      propertyPath: 'enemyPrefabs.Array.data[1]'
-      value: 
-      objectReference: {fileID: 5296441092414965769, guid: 20b4ab9a7a7e50d4f8100920671ca0f6, type: 3}
+      objectReference: {fileID: 1713781036754730, guid: 0f8a471e5537f864ebdb454fe82308eb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2498,10 +2486,6 @@ PrefabInstance:
     - target: {fileID: 6419577971192471075, guid: b1106e99f0830d547a6c01a8702dddcf, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 6419577971192471075, guid: b1106e99f0830d547a6c01a8702dddcf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

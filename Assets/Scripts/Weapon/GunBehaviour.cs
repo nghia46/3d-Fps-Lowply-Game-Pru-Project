@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -156,8 +157,8 @@ namespace Weapon
         {
             Vector3 direction = bulletDirection.forward; // Initial direction is forward
             // Apply random spread within the specified angle
-            direction = Quaternion.AngleAxis(Random.Range(-gun.SpreadAngle, gun.SpreadAngle), bulletDirection.right) * direction;
-            direction = Quaternion.AngleAxis(Random.Range(-gun.SpreadAngle, gun.SpreadAngle), bulletDirection.up) * direction;
+            direction = Quaternion.AngleAxis(UnityEngine.Random.Range(-gun.SpreadAngle, gun.SpreadAngle), bulletDirection.right) * direction;
+            direction = Quaternion.AngleAxis(UnityEngine.Random.Range(-gun.SpreadAngle, gun.SpreadAngle), bulletDirection.up) * direction;
             return direction; // Return the calculated direction
         }
         // Method to handle hit detection
@@ -195,7 +196,6 @@ namespace Weapon
         private IEnumerator ReloadCoroutine()
         {
             EventManager.Instance.StartReloadEvent();
-
             // Play reload animation or perform any visual feedback
             //animator.SetTrigger("Reload");
             // Wait for the reload animation duration

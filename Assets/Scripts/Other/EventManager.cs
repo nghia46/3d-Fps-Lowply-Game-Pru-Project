@@ -22,27 +22,22 @@ public class EventManager : MonoBehaviour
     }
     public void StartScoreEvent(int id, int score)
     {
-        Debug.Log("Score");
         ScoreEvent?.Invoke(id, score);
     }
     public void StartFireEvent()
     {
-        Debug.Log("Fire");
         FireEvent?.Invoke();
     }
     public void StartReloadEvent()
     {
-        Debug.Log("Reload");
         ReloadEvent?.Invoke();
     }
     public void StartNeedReloadEvent()
     {
-        Debug.Log("Need Reload");
         NeedReloadingEvent?.Invoke();
     }
     public void StartGameOverEvent()
     {
-        Debug.Log("Game Over");
         GameOverEvent?.Invoke();
     }
 }
