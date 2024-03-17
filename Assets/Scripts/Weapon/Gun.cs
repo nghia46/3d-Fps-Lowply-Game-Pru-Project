@@ -17,6 +17,5 @@ public class Gun : ScriptableObject
     [Tooltip("Shoot rate while brusting (per/s)")]
     [Range(0, 5)]
     public float BrustingRate;
-
     public float ReloadDuration;
 }

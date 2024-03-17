@@ -5,12 +5,12 @@ namespace Weapon
 {
     public class GunBehaviour : MonoBehaviour
     {
-        [SerializeField] private Gun gun; // Reference to the gun scriptable object
+        public Gun gun; // Reference to the gun scriptable object
         [SerializeField] private InputReader input; // Reference to the input reader component
-        [SerializeField] private Animator animator; // Reference to the animator component
         [SerializeField] private Transform muzzle; // Reference to the muzzle transform
         [SerializeField] private Transform bulletDirection; // Reference to the bullet direction transform
         [SerializeField] private GameObject bulletHolePrefab; // Prefab for the bullet hole effect
+        Animator animator; // Reference to the animator component
         public int CurrentBullet; // Current bullet count
         bool isShooting; // Flag to check if the player is shooting
         bool isReloading; // Flag to check if the player is reloading
@@ -29,6 +29,7 @@ namespace Weapon
             input.FireEvent += HandleFire; // Subscribe to the fire event
             input.FireCancelEvent += HandheldFireCancel; // Subscribe to the fire cancel event
             input.GunAimEvent += HandleAim; // Subscribe to the aim event
+            input.GunReloadEvent += HandleReload; // Subscribe to the reload event
         }
         // Update method is called once per frame
         private void Update()
@@ -96,14 +97,16 @@ namespace Weapon
         {
             isShooting = false; // Stop burst firing
         }
+        public void HandleReload()
+        {
+            Reload();
+        }
         // Method to handle reload action
         private void Reload()
         {
             if (!isReloading && CurrentBullet < gun.MaxMagazine)
             {
-
                 isReloading = true;
-
                 StartCoroutine(ReloadCoroutine());
             }
         }
@@ -115,17 +118,28 @@ namespace Weapon
             {
                 StartCoroutine(ShootWithDelay());
             }
-            else if (CurrentBullet >= 0)
+        }
+        // Method to handle the fire logic
+        private void Fire()
+        {
+            for (int i = 0; i < gun.NumberOfBulletFire; i++) // Fire multiple bullets
             {
-                Reload();
+                Vector3 direction = CalculateBulletDirection(); // Calculate bullet direction
+                // Raycast to detect hits
+                if (Physics.Raycast(bulletDirection.position, direction, out RaycastHit hit, gun.MaxDistance))
+                {
+                    HandleHit(hit); // Handle the hit
+                }
             }
         }
-        // Coroutine to handle shooting logic with delay
-        private IEnumerator ShootWithDelay()
+        // Method to activate/deactivate muzzle flash
+        private void ActiveMuzze(bool isActive)
         {
-            CurrentBullet--;
-            canShoot = false; // Prevent shooting until the delay is over
-            EventManager.Instance.StartFireEvent();
+            muzzle.GetChild(0).gameObject.SetActive(isActive);
+        }
+        // Method to handle aiming animation
+        private void AimingAnimation()
+        {
             if (!isAiming)
             {
                 CrosshairBehaviour.Instance.TurnOnCrosshair();
@@ -136,24 +150,6 @@ namespace Weapon
                 CrosshairBehaviour.Instance.TurnOffCrosshair();
                 animator.SetTrigger("AimShoot");
             }
-            muzzle.GetChild(0).gameObject.SetActive(true); // Activate muzzle flash effect
-
-            // Fire multiple bullets
-            for (int i = 0; i < gun.NumberOfBulletFire; i++)
-            {
-                Vector3 direction = CalculateBulletDirection(); // Calculate bullet direction
-                // Raycast to detect hits
-                if (Physics.Raycast(bulletDirection.position, direction, out RaycastHit hit, gun.MaxDistance))
-                {
-                    HandleHit(hit); // Handle the hit
-                }
-            }
-
-            yield return new WaitForSeconds(0.1f); // Delay between shots
-
-            // Deactivate muzzle flash and allow shooting again
-            muzzle.GetChild(0).gameObject.SetActive(false);
-            canShoot = true;
         }
         // Method to calculate bullet direction with spread
         private Vector3 CalculateBulletDirection()
@@ -182,9 +178,24 @@ namespace Weapon
             GameObject bulletHole = Instantiate(bulletHolePrefab, hit.point + gapOffset, Quaternion.LookRotation(hit.normal, Vector3.up));
             bulletHole.transform.parent = GameObject.Find("GarbagePool").transform;
         }
+        // Coroutine to handle shooting logic with delay
+        private IEnumerator ShootWithDelay()
+        {
+            CurrentBullet--; // Reduce the bullet count
+            canShoot = false; // Prevent shooting until the delay is over
+            EventManager.Instance.StartFireEvent();
+            AimingAnimation(); // Call the aiming animation method
+            ActiveMuzze(true); // Activate muzzle flash
+            Fire(); // Call the fire method
+            yield return new WaitForSeconds(0.1f); // Delay between shots
+            ActiveMuzze(false); // Deactivate muzzle flash
+            canShoot = true;
+        }
         // Coroutine for the reloading process
         private IEnumerator ReloadCoroutine()
         {
+            EventManager.Instance.StartReloadEvent();
+
             // Play reload animation or perform any visual feedback
             //animator.SetTrigger("Reload");
             // Wait for the reload animation duration
@@ -210,6 +221,7 @@ namespace Weapon
             yield return new WaitForSeconds(gun.MuzzleFlashDuration);
             muzzle.transform.GetChild(0).gameObject.SetActive(false);
         }
+        // OnDestroy method is called when the object is destroyed
         private void OnDestroy()
         {
             // Stop all coroutines when the object is destroyed

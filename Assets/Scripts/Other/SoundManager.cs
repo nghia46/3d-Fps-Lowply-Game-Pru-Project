@@ -6,25 +6,32 @@ public class SoundManager : MonoBehaviour
     private enum SoundType
     {
         Fire,
-        Reload
+        Reload,
+        NeedReload,
     }
     private void Start()
     {
         EventManager.Instance.FireEvent += PlayFireSound;
-        EventManager.Instance.ReloadingEvent += PlayReloadingSound;
+        EventManager.Instance.NeedReloadingEvent += PlayNeedReloadSound;
+        EventManager.Instance.ReloadEvent += PlayReloadSound;
     }
 
     private void PlayFireSound()
     {
         sounds[(int)SoundType.Fire].Play();
     }
-    private void PlayReloadingSound()
+    private void PlayNeedReloadSound()
+    {
+        sounds[(int)SoundType.NeedReload].Play();
+    }
+    private void PlayReloadSound()
     {
         sounds[(int)SoundType.Reload].Play();
     }
     private void OnDisable()
     {
-        EventManager.Instance.ReloadingEvent -= PlayReloadingSound;
+        EventManager.Instance.NeedReloadingEvent -= PlayNeedReloadSound;
         EventManager.Instance.FireEvent -= PlayFireSound;
+        EventManager.Instance.ReloadEvent -= PlayReloadSound;
     }
 }

@@ -19,4 +19,4 @@ MonoBehaviour:
   NumberOfBulletFire: 1
   SpreadAngle: 0.1
   BrustingRate: 0.03
-  ReloadDuration: 4.8
+  ReloadDuration: 1

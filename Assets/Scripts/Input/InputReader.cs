@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class InputReader : ScriptableObject, GameInput.IGamePlayActions
 {
     private GameInput gameInput;
+
+    
     private void OnEnable()
     {
         gameInput = new();
@@ -26,6 +28,9 @@ public class InputReader : ScriptableObject, GameInput.IGamePlayActions
     // Gun aim Event
     public event Action GunAimEvent;
     public event Action GunAimCancelEvent;
+    // Gun reload Event
+    public event Action GunReloadEvent;
+    public event Action GunReloadCancelEvent;
     //Jump event
     public event Action JumpEvent;
     public event Action JumpCancelEvent;
@@ -72,6 +77,18 @@ public class InputReader : ScriptableObject, GameInput.IGamePlayActions
                 break;
             case InputActionPhase.Canceled:
                 GunAimCancelEvent?.Invoke();
+                break;
+        }
+    }
+    public void OnGunReload(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                GunReloadEvent?.Invoke();
+                break;
+            case InputActionPhase.Canceled:
+                GunReloadCancelEvent?.Invoke();
                 break;
         }
     }

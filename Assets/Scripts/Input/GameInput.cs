@@ -72,6 +72,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GunReload"",
+                    ""type"": ""Button"",
+                    ""id"": ""8976f329-eb95-4488-8aa8-11644e229ef1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -173,6 +182,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""GunAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68f9ef29-0d1e-40ef-bf1b-89a32411c1dd"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GunReload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -186,6 +206,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
         m_GamePlay_Fire = m_GamePlay.FindAction("Fire", throwIfNotFound: true);
         m_GamePlay_GunAim = m_GamePlay.FindAction("GunAim", throwIfNotFound: true);
+        m_GamePlay_GunReload = m_GamePlay.FindAction("GunReload", throwIfNotFound: true);
     }
 
     ~@GameInput()
@@ -257,6 +278,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Jump;
     private readonly InputAction m_GamePlay_Fire;
     private readonly InputAction m_GamePlay_GunAim;
+    private readonly InputAction m_GamePlay_GunReload;
     public struct GamePlayActions
     {
         private @GameInput m_Wrapper;
@@ -266,6 +288,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
         public InputAction @Fire => m_Wrapper.m_GamePlay_Fire;
         public InputAction @GunAim => m_Wrapper.m_GamePlay_GunAim;
+        public InputAction @GunReload => m_Wrapper.m_GamePlay_GunReload;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -290,6 +313,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @GunAim.started += instance.OnGunAim;
             @GunAim.performed += instance.OnGunAim;
             @GunAim.canceled += instance.OnGunAim;
+            @GunReload.started += instance.OnGunReload;
+            @GunReload.performed += instance.OnGunReload;
+            @GunReload.canceled += instance.OnGunReload;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -309,6 +335,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @GunAim.started -= instance.OnGunAim;
             @GunAim.performed -= instance.OnGunAim;
             @GunAim.canceled -= instance.OnGunAim;
+            @GunReload.started -= instance.OnGunReload;
+            @GunReload.performed -= instance.OnGunReload;
+            @GunReload.canceled -= instance.OnGunReload;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -333,5 +362,6 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnGunAim(InputAction.CallbackContext context);
+        void OnGunReload(InputAction.CallbackContext context);
     }
 }
