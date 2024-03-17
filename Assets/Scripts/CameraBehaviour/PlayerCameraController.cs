@@ -1,4 +1,4 @@
-using Camera;
+using CameraBehaviour;
 using UnityEngine;
 
 namespace Player

@@ -21,7 +21,11 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/Scenes/MainMenu.unity
   - m_enabled: 1
-    m_path: Assets/Scenes/Game Scene.unity
+    m_path: Assets/Scenes/Plain.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Desert.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/CrystalMine.unity
   references:
     version: 2
     RefIds:

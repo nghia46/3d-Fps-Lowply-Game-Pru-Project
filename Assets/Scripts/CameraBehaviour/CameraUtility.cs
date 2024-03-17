@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Camera
+namespace CameraBehaviour
 {
     class CameraUtility : MonoBehaviour
     {

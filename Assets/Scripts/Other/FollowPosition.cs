@@ -1,13 +1,13 @@
 using UnityEngine;
 
-namespace Player
+namespace Other
 {
-    public class FollowPlayer : MonoBehaviour
+    public class FollowPosition : MonoBehaviour
     {
         [SerializeField]private GameObject PlayerPosition;
         void Update()
         {
             transform.position = PlayerPosition.transform.position;
-        }
+        }  
     }
 }

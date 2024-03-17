@@ -15,6 +15,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (CurrentHealth >= damage)
         {
             CurrentHealth -= damage;
+            PlayerHealthBar.Instance.UpdateHealth(CurrentHealth,playerValue.MaxHealth);
         }
         else
         {

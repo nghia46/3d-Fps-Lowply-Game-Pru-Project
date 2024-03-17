@@ -1,4 +1,3 @@
-using Camera;
 using UnityEngine;
 
 public class GameOverTrigger : MonoBehaviour
