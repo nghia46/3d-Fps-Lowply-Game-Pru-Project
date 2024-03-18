@@ -1,35 +1,30 @@
-using System;
+using Entity;
 using UnityEngine;
 
-public class PlayerBehaviour : MonoBehaviour
+public class PlayerBehaviour : MonoBehaviour, IDamageable
 {
     [SerializeField] private PlayerValue playerValue;
     public float CurrentHealth;
-
     private void Start()
     {
         CurrentHealth = playerValue.MaxHealth;
+    }
+    public void Die()
+    {
+        Debug.Log("Player died!");
+        EventManager.Instance.StartGameOverEvent();
     }
     public void TakeDamage(int damage)
     {
         if (CurrentHealth >= damage)
         {
             CurrentHealth -= damage;
-            PlayerHealthBar.Instance.UpdateHealth(CurrentHealth,playerValue.MaxHealth);
+            PlayerHealthBar.Instance.UpdateHealth(CurrentHealth, playerValue.MaxHealth);
         }
         else
         {
             CurrentHealth = 0; // Ensure health is not negative
             Die();
         }
-    }
-
-    private void Die()
-    {
-        // Implement death logic here
-        Debug.Log("Player died!");
-        EventManager.Instance.StartGameOverEvent();
-        // For example, you can show a game over screen, restart the level, or perform other actions
-        // You might want to reset the player's position, reset their health, etc.
     }
 }

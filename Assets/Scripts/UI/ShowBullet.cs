@@ -19,7 +19,6 @@ public class ShowBullet : MonoBehaviour
         // Update the bullet count text every frame
         UpdateBulletCount();
     }
-
     private void UpdateBulletCount()
     {
         if (gunBehaviour != null && gunBehaviour.CurrentBullet > 0)
@@ -34,4 +33,3 @@ public class ShowBullet : MonoBehaviour
         }
     }
 }
-

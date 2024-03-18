@@ -1197,10 +1197,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7334297493636168890, guid: eeab1ea0c46f6fb4c9dc53fcd8e4aaa9, type: 3}
-      propertyPath: timePerCollect
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 8920471868436178073, guid: eeab1ea0c46f6fb4c9dc53fcd8e4aaa9, type: 3}
       propertyPath: m_Name
       value: GarbagePool
@@ -2086,14 +2082,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8480066392674287710, guid: ff11c437a67bd4746981c1af700607f7, type: 3}
-      propertyPath: enemyPrefabs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8480066392674287710, guid: ff11c437a67bd4746981c1af700607f7, type: 3}
-      propertyPath: 'enemyPrefabs.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1713781036754730, guid: 0f8a471e5537f864ebdb454fe82308eb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2481,6 +2469,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2973326310037616470, guid: b1106e99f0830d547a6c01a8702dddcf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3665713343971175182, guid: b1106e99f0830d547a6c01a8702dddcf, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6419577971192471075, guid: b1106e99f0830d547a6c01a8702dddcf, type: 3}

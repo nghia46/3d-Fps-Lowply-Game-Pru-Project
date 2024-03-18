@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196f39ba801d76a4e889f119253c1d79, type: 3}
   m_Name: Ak-47
   m_EditorClassIdentifier: 
-  Damage: 10
+  Damage: 20
   MaxMagazine: 34
   MaxDistance: 300
   MuzzleFlashDuration: 0.05

@@ -15,6 +15,6 @@ MonoBehaviour:
   Id: 0
   Score: 10
   MaxHealth: 20
-  Damage: 10
+  Damage: 20
   Speed: 10
   StoppingDistance: 10
