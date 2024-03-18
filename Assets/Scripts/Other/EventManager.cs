@@ -7,7 +7,9 @@ public class EventManager : MonoBehaviour
     public event Action FireEvent; // Event to handle fire
     public event Action NeedReloadingEvent; // Event to handle need reloading
     public event Action GameOverEvent;// Event to handle game over
+    public event Action ResetValueEvent; // Event to
     public event Action ReloadEvent; // Event to handle reload
+    public event Action<int> ByUpgradeEvent; // Event to handle by upgrade
 
     private void Awake()
     {
@@ -19,6 +21,14 @@ public class EventManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    public void StartResetValueEvent()
+    {
+        ResetValueEvent?.Invoke();
+    }
+    public void StartByUpgradeEvent(int id)
+    {
+        ByUpgradeEvent?.Invoke(id);
     }
     public void StartScoreEvent(int id, int score)
     {

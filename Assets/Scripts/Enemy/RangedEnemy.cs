@@ -20,11 +20,15 @@ public class RangedEnemy : MonoBehaviour, IDamageable, IEnemy
     }
     private void Update()
     {
-        transform.LookAt(player.transform);
+        LookAtPlayer();
+        AttackWithRange(enemy.StoppingDistance);
+    }
 
+    private void AttackWithRange(float StoppingDistance)
+    {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-        if (distanceToPlayer > enemy.StoppingDistance)
+        if (distanceToPlayer > StoppingDistance)
         {
             transform.Translate(enemy.Speed * Time.deltaTime * Vector3.forward);
         }
@@ -40,6 +44,12 @@ public class RangedEnemy : MonoBehaviour, IDamageable, IEnemy
             }
         }
     }
+
+    private void LookAtPlayer()
+    {
+        transform.LookAt(player.transform);
+    }
+
     private IEnumerator AttackCooldown()
     {
         // Set canAttack flag to false to prevent further attacks during cooldown
@@ -92,7 +102,6 @@ public class RangedEnemy : MonoBehaviour, IDamageable, IEnemy
         // Perform attack logic here
         if (player.TryGetComponent<IDamageable>(out var playerBehaviour))
         {
-            print("Attack!");
             // Deal damage to the player
             playerBehaviour.TakeDamage(enemy.Damage);
         }

@@ -5,12 +5,16 @@ public class SpawnEnemy : MonoBehaviour
 {
     // Enemy prefabs to spawn
     public GameObject[] enemyPrefabs;
+    public Transform[] spawnPoints;
 
     // Number of enemies to spawn
-    public int numberOfEnemies = 10;
+    [SerializeField] private LeverValue value;
 
     // Time between enemy spawns
     public float spawnInterval = 1f;
+
+    // Range around the central point to spawn enemies
+    public float spawnRange = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,23 +26,33 @@ public class SpawnEnemy : MonoBehaviour
     IEnumerator SpawnEnemies()
     {
         // Loop to spawn the specified number of enemies
-        for (int i = 0; i < numberOfEnemies; i++)
+        for (int i = 0; i < value.EnemyQuantity; i++)
         {
-            // Calculate random position within spawn range around (100, 100)
-            Vector3 spawnPosition = new Vector3(
-                Random.Range(-50, 50),
-                Random.Range(50, 100),
-                Random.Range(-50, 50)
-            );
+            // Calculate random position within spawn range around the spawn points
+            Vector3 randomSpawnPosition = GetRandomSpawnPosition();
 
             // Randomly select an enemy prefab from the array
             GameObject randomEnemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
 
             // Instantiate the randomly selected enemy prefab at the random position
-            Instantiate(randomEnemyPrefab, spawnPosition, Quaternion.identity, this.transform);
+            Instantiate(randomEnemyPrefab, randomSpawnPosition, Quaternion.identity, this.transform);
 
             // Wait for the specified spawn interval before spawning the next enemy
             yield return new WaitForSeconds(spawnInterval);
         }
+    }
+
+    // Method to calculate a random spawn position within the spawn range around the spawn points
+    Vector3 GetRandomSpawnPosition()
+    {
+        // Get a random spawn point
+        Transform randomSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+
+        // Calculate a random position within the spawn range around the spawn point
+        Vector3 randomOffset = Random.insideUnitSphere * spawnRange;
+        randomOffset.y = 0; // Ensure enemies spawn at the same height
+        Vector3 randomSpawnPosition = randomSpawnPoint.position + randomOffset;
+
+        return randomSpawnPosition;
     }
 }

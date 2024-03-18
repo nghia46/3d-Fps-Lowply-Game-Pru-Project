@@ -7,7 +7,7 @@ public class UpdatePoint : MonoBehaviour
 {
 
     [SerializeField] private int collectableId;
-    [SerializeField] public int score;
+    [SerializeField] public LeverValue value;
     private TextMeshProUGUI _txtScore;
 
     private void Awake()
@@ -17,7 +17,7 @@ public class UpdatePoint : MonoBehaviour
 
     private void Start()
     {
-        _txtScore.text = $"<color=Yellow>Score:</color> {score}";
+        _txtScore.text = $"<color=Yellow>Score:</color> {value.Score}";
         EventManager.Instance.ScoreEvent += UpdateScore;
     }
 
@@ -26,16 +26,16 @@ public class UpdatePoint : MonoBehaviour
         switch (triggerId)
         {
             case 0:
-                score += enemyScore;
+                value.Score += enemyScore;
                 break;
             case 1:
-                score += enemyScore;
+                value.Score += enemyScore;
                 break;
             case 2:
-                score += enemyScore;
+                value.Score += enemyScore;
                 break;
         }
-        _txtScore.text = $"<color=Yellow>Score</color>: {score}";
+        _txtScore.text = $"<color=Yellow>Score</color>: {value.Score}";
     }
 
     private void OnDisable()

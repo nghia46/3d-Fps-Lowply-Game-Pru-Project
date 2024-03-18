@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6968911517949816879}
   - component: {fileID: 2243333683798901821}
   - component: {fileID: 5981376840377862988}
-  - component: {fileID: 4515416898058006842}
+  - component: {fileID: 5215219159093992462}
   m_Layer: 6
   m_Name: GFX
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4515416898058006842
+--- !u!65 &5215219159093992462
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,11 +102,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.0000001, y: 1, z: 1.0000001}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &885461445426852763
 GameObject:
@@ -211,7 +211,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 8141779018830084366}
-  enemyInstance: {fileID: 5296441092414965769}
 --- !u!1 &2896019109080645908
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c2bcf8ba4903c4bbe9a2fa5def8d8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyInstance: {fileID: 5296441092414965769}
 --- !u!1 &2915275852003295379
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,11 +483,12 @@ GameObject:
   m_Component:
   - component: {fileID: 9076437694823828102}
   - component: {fileID: 6761220226258213642}
-  - component: {fileID: 8698350522694352540}
   - component: {fileID: 6001698309706651648}
+  - component: {fileID: 8698350522694352540}
+  - component: {fileID: 7096200953124839986}
   m_Layer: 6
   m_Name: ShieldEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -536,20 +535,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &8698350522694352540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5296441092414965769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c526fdbec2b49e0418a4167fc0123e07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6001698309706651648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,6 +552,40 @@ MonoBehaviour:
   enemy: {fileID: 11400000, guid: f6598654ca8123e46ba8a495f7659489, type: 2}
   enemyRenderer: {fileID: 5981376840377862988}
   CurrentHealth: 0
+--- !u!114 &8698350522694352540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5296441092414965769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c526fdbec2b49e0418a4167fc0123e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!195 &7096200953124839986
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5296441092414965769}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.92
+  m_Speed: 3.5
+  m_Acceleration: 16
+  avoidancePriority: 50
+  m_AngularSpeed: 240
+  m_StoppingDistance: 5
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 7.11
+  m_BaseOffset: 3.51
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5620032526490574198
 GameObject:
   m_ObjectHideFlags: 0

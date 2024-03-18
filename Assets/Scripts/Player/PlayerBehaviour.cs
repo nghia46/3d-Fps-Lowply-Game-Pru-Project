@@ -12,7 +12,6 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
     }
     public void Die()
     {
-        Debug.Log("Player died!");
         EventManager.Instance.StartGameOverEvent();
     }
     public void TakeDamage(int damage)

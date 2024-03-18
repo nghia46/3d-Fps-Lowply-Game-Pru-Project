@@ -101,6 +101,10 @@ namespace Weapon
         }
         public void HandleReload()
         {
+            if (!this || !gameObject)
+            {
+                return;
+            }
             Reload();
         }
         // Method to handle reload action
@@ -198,7 +202,7 @@ namespace Weapon
         {
             EventManager.Instance.StartReloadEvent();
             // Play reload animation or perform any visual feedback
-            //animator.SetTrigger("Reload");
+            animator.SetTrigger("Reload");
             // Wait for the reload animation duration
             yield return new WaitForSeconds(gun.ReloadDuration);
             // Refill the magazine

@@ -129,7 +129,7 @@ public class MainMenuController : MonoBehaviour {
         if (!string.IsNullOrEmpty(newGameSceneName))
             SceneManager.LoadScene(newGameSceneName);
         else
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("Plain");
     }
     #endregion
 

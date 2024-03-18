@@ -25,7 +25,7 @@ public class ShowBullet : MonoBehaviour
         {
             // Retrieve the current bullet count from the GunBehaviour script
             bulletTxt.text = $"<color=red>{gunBehaviour.CurrentBullet}</color>/{gunBehaviour.gun.MaxMagazine}";
-            EventManager.Instance.StartNeedReloadEvent();
+            //EventManager.Instance.StartNeedReloadEvent();
         }
         else
         {

@@ -1,32 +1,46 @@
 using System.Collections;
 using Entity;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MeleEnemy : MonoBehaviour, IDamageable, IEnemy
 {
     [SerializeField] public Enemy enemy;
     [SerializeField] private Renderer enemyRenderer;
+    private NavMeshAgent navMeshAgent;
+
     public float CurrentHealth;
     private ExplosionEffect explosionEffect;
-    private Transform player;
+    private GameObject player;
     private bool canAttack;
 
     private void Awake()
     {
         canAttack = true;
         CurrentHealth = enemy.MaxHealth;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player");
         explosionEffect = GetComponent<ExplosionEffect>();
+    }
+    private void Start()
+    {
+        navMeshAgent.stoppingDistance = enemy.StoppingDistance;
+        navMeshAgent.speed = enemy.Speed;
     }
     private void Update()
     {
-        transform.LookAt(player);
+        //LookAtPlayer();
+        AttackWithRange();
+    }
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+    private void AttackWithRange()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
         if (distanceToPlayer > enemy.StoppingDistance)
         {
-            transform.Translate(enemy.Speed * Time.deltaTime * Vector3.forward);
+            navMeshAgent.SetDestination(player.transform.position);
         }
         else
         {
@@ -40,6 +54,7 @@ public class MeleEnemy : MonoBehaviour, IDamageable, IEnemy
             }
         }
     }
+
     private IEnumerator AttackCooldown()
     {
         // Set canAttack flag to false to prevent further attacks during cooldown
@@ -51,10 +66,9 @@ public class MeleEnemy : MonoBehaviour, IDamageable, IEnemy
     }
     public void TakeDamage(int damage)
     {
-        if (enemy.MaxHealth >= damage)
-        {
-            CurrentHealth -= damage;
-        }
+
+        CurrentHealth -= damage;
+
         if (CurrentHealth <= 0)
         {
             Die();
@@ -92,7 +106,6 @@ public class MeleEnemy : MonoBehaviour, IDamageable, IEnemy
         // Perform attack logic here
         if (player.TryGetComponent<IDamageable>(out var playerBehaviour))
         {
-            print("Attack!");
             // Deal damage to the player
             playerBehaviour.TakeDamage(enemy.Damage);
         }

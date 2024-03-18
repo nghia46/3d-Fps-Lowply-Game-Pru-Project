@@ -214,7 +214,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 4219514476600599547}
-  enemyInstance: {fileID: 3502180067610029460}
 --- !u!1 &3502180067610029460
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +229,7 @@ GameObject:
   - component: {fileID: 6367333888720476592}
   m_Layer: 6
   m_Name: BasicEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -313,8 +312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: 6a27beefa10c2124dab0729ecae1dff1, type: 2}
-  CurrentHealth: 0
   enemyRenderer: {fileID: 2063263834666805228}
+  CurrentHealth: 0
 --- !u!114 &6367333888720476592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c2bcf8ba4903c4bbe9a2fa5def8d8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyInstance: {fileID: 3502180067610029460}
 --- !u!1 &7002412549821510303
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fee0cafb9e0e1f40bb08763d9ca397d, type: 3}
   m_Name: Player Value
   m_EditorClassIdentifier: 
-  MaxHealth: 1000
+  MaxHealth: 500
   Gravity: -36.72
   groundDistance: 1.8
   speed: 15

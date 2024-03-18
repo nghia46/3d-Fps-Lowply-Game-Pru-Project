@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ak-47
   m_EditorClassIdentifier: 
   Damage: 20
-  MaxMagazine: 34
+  MaxMagazine: 25
   MaxDistance: 300
   MuzzleFlashDuration: 0.05
   NumberOfBulletFire: 1

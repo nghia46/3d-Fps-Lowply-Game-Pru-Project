@@ -4,6 +4,12 @@ public class uiEvent : MonoBehaviour
 {
     public void PlayAgain()
     {
-        SceneManager.LoadScene(1);
+        EventManager.Instance.StartResetValueEvent();
+        SceneManager.LoadScene("Plain");
+    }
+    public void Exit()
+    {
+        EventManager.Instance.StartResetValueEvent();
+        SceneManager.LoadScene("MainMenu");
     }
 }

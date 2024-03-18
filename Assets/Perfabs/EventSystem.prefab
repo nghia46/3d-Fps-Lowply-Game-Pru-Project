@@ -82,6 +82,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646651f953fa6774da21dee40b9176a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerValue: {fileID: 11400000, guid: e41d0a9059ad40b47b3f7ae927b9b5ae, type: 2}
+  DefaultsPlayerValue: {fileID: 11400000, guid: aa93d146aa2cb064da0b046bba6e02e9, type: 2}
+  LeverValue: {fileID: 11400000, guid: 8b5261d54892e81478c0aedfc965c22c, type: 2}
+  DefaultsLeverValue: {fileID: 11400000, guid: 908033400fa04194081f7f1570b5e60f, type: 2}
+  gun: {fileID: 11400000, guid: a7d619f56d3f7224a8fba9f541f55ff3, type: 2}
+  DefaultsGunValue: {fileID: 11400000, guid: 8bdf5ae9250d83c44b640f15c27a02e9, type: 2}
   gameOverPanel: {fileID: 0}
 --- !u!114 &4800320909213674417
 MonoBehaviour:

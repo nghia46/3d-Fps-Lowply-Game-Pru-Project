@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 2828740346431863199}
   m_Layer: 6
   m_Name: FireEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,8 +309,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: 94c1914485ca0e94fb8d9772ae6aa191, type: 2}
-  CurrentHealth: 0
   enemyRenderer: {fileID: 137944918822585846}
+  CurrentHealth: 0
 --- !u!114 &6050363052987565669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,7 +569,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 3298639242145581097}
-  enemyInstance: {fileID: 1713781036754730}
 --- !u!1 &1959786820361038878
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,7 +898,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c2bcf8ba4903c4bbe9a2fa5def8d8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyInstance: {fileID: 1713781036754730}
 --- !u!1 &4507735850597620248
 GameObject:
   m_ObjectHideFlags: 0
