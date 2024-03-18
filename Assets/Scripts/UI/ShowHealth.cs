@@ -1,3 +1,4 @@
+using Entity;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +12,6 @@ public class ShowHealth : MonoBehaviour
     }
     private void LateUpdate()
     {
-        healthTxt.text = "<color=red>" + EnemyInstance.GetComponent<EnemyAI>().CurrentHealth.ToString() + "</color>";
+        healthTxt.text = "<color=red>" + EnemyInstance.GetComponent<IDamageable>().GetCurrentHealth().ToString() + "</color>";
     }
 }

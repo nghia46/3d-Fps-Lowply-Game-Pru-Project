@@ -18,3 +18,4 @@ MonoBehaviour:
   Damage: 40
   Speed: 50
   StoppingDistance: 20
+  AttackCooldown: 1

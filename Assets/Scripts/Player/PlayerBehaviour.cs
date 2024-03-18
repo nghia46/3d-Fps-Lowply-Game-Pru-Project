@@ -5,6 +5,7 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
 {
     [SerializeField] private PlayerValue playerValue;
     public float CurrentHealth;
+
     private void Start()
     {
         CurrentHealth = playerValue.MaxHealth;
@@ -26,5 +27,15 @@ public class PlayerBehaviour : MonoBehaviour, IDamageable
             CurrentHealth = 0; // Ensure health is not negative
             Die();
         }
+    }
+
+    public float GetCurrentHealth()
+    {
+       return CurrentHealth;  
+    }
+
+    public float GetMaxHealth()
+    {
+        return playerValue.MaxHealth;
     }
 }

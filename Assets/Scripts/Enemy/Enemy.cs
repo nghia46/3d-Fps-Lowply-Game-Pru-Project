@@ -9,4 +9,5 @@ public class Enemy : ScriptableObject
     public int Damage;
     public int Speed;
     public int StoppingDistance;
+    public float AttackCooldown;
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Entity;
 using UnityEngine;
 
 namespace Weapon
@@ -166,8 +167,8 @@ namespace Weapon
         {
             // Check if the hit object is an enemy
             if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy")) InstantiateBulletHole(hit);
-            var enemyAI = hit.transform.GetComponent<EnemyAI>(); // Get the enemy AI component
-            if (enemyAI != null) enemyAI.DealDamage(enemyAI,gun.Damage); // Damage the enemy
+            var enemyAI = hit.transform.GetComponent<IDamageable>(); // Get the enemy AI component
+            enemyAI?.TakeDamage(gun.Damage); // Damage the enemy
         }
         // Method to instantiate bullet hole effect at hit position
         private void InstantiateBulletHole(RaycastHit hit)

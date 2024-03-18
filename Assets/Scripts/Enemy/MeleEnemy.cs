@@ -2,17 +2,15 @@ using System.Collections;
 using Entity;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour, ICombatant, IDamageable
+public class MeleEnemy : MonoBehaviour, IDamageable, IEnemy
 {
     [SerializeField] public Enemy enemy;
-    [SerializeField] PlayerBehaviour playerBehaviour;
     [SerializeField] private Renderer enemyRenderer;
+    public float CurrentHealth;
     private ExplosionEffect explosionEffect;
     private Transform player;
-    public int CurrentHealth;
-    private float attackCooldown = 2f; // Cooldown period between attacks
-    // Variables for color change
     private bool canAttack;
+
     private void Awake()
     {
         canAttack = true;
@@ -42,23 +40,12 @@ public class EnemyAI : MonoBehaviour, ICombatant, IDamageable
             }
         }
     }
-    private void Attack()
-    {
-        // Perform attack logic here
-        playerBehaviour = FindAnyObjectByType<PlayerBehaviour>();
-        if (playerBehaviour != null)
-        {
-            print("Attack!");
-            // Deal damage to the player
-            playerBehaviour.TakeDamage(enemy.Damage);
-        }
-    }
     private IEnumerator AttackCooldown()
     {
         // Set canAttack flag to false to prevent further attacks during cooldown
         canAttack = false;
         // Wait for attackCooldown duration
-        yield return new WaitForSeconds(attackCooldown);
+        yield return new WaitForSeconds(enemy.AttackCooldown);
         // Set canAttack flag to true after cooldown period
         canAttack = true;
     }
@@ -73,13 +60,13 @@ public class EnemyAI : MonoBehaviour, ICombatant, IDamageable
             Die();
         }
         // Change the enemy's color to red temporarily
-        StartCoroutine(FlashDamageColor());
+        StartCoroutine(FlashDamageColorWhenDamage());
     }
     private void OnDestroy()
     {
         EventManager.Instance.StartScoreEvent(enemy.Id, enemy.Score);
     }
-    IEnumerator FlashDamageColor()
+    IEnumerator FlashDamageColorWhenDamage()
     {
         // Change the color to red
         enemyRenderer.material.color = Color.red;
@@ -99,5 +86,23 @@ public class EnemyAI : MonoBehaviour, ICombatant, IDamageable
         // /CurrentHealth = 0; // Ensure health is not negative
         explosionEffect.Play(transform.position);
         Destroy(gameObject); // Destroy the enemy GameObject
+    }
+    public void Attack()
+    {
+        // Perform attack logic here
+        if (player.TryGetComponent<IDamageable>(out var playerBehaviour))
+        {
+            print("Attack!");
+            // Deal damage to the player
+            playerBehaviour.TakeDamage(enemy.Damage);
+        }
+    }
+    public float GetCurrentHealth()
+    {
+        return CurrentHealth;
+    }
+    public float GetMaxHealth()
+    {
+        return enemy.MaxHealth;
     }
 }

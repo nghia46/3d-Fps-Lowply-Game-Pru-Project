@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 9076437694823828102}
   - component: {fileID: 6761220226258213642}
   - component: {fileID: 8698350522694352540}
-  - component: {fileID: 1568516699786588889}
+  - component: {fileID: 6001698309706651648}
   m_Layer: 6
   m_Name: ShieldEnemy
   m_TagString: Untagged
@@ -550,7 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c526fdbec2b49e0418a4167fc0123e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1568516699786588889
+--- !u!114 &6001698309706651648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -559,12 +559,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5296441092414965769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd2c5109b45f19944aeb83efb235d251, type: 3}
+  m_Script: {fileID: 11500000, guid: 16b653b60dd11714195b809438504520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: f6598654ca8123e46ba8a495f7659489, type: 2}
-  CurrentHealth: 0
   enemyRenderer: {fileID: 5981376840377862988}
+  CurrentHealth: 0
 --- !u!1 &5620032526490574198
 GameObject:
   m_ObjectHideFlags: 0
