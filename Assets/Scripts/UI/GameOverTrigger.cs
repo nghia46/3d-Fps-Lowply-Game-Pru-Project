@@ -18,7 +18,6 @@ public class GameOverTrigger : MonoBehaviour
     {
         OnCursor();
         ActiveGameOverPanel();
-        ResetAllValuesToDefault();
     }
     private void OnResetValue()
     {
@@ -41,6 +40,8 @@ public class GameOverTrigger : MonoBehaviour
         gun.MaxMagazine = DefaultsGunValue.MaxMagazine;
         LeverValue.Score = 0;
         LeverValue.EnemyQuantity = DefaultsLeverValue.EnemyQuantity;
+        LeverValue.lastLeverScence = DefaultsLeverValue.lastLeverScence;
+        LeverValue.CoinQuantity = DefaultsLeverValue.CoinQuantity;
     }
     private void OnDisable()
     {

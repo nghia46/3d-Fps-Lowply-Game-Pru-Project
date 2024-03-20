@@ -170,13 +170,18 @@ namespace Weapon
         private void HandleHit(RaycastHit hit)
         {
             // Check if the hit object is an enemy
-            if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy")) InstantiateBulletHole(hit);
+            if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy") && hit.transform.gameObject.layer != LayerMask.NameToLayer("Collectible"))
+            {
+                InstantiateBulletHole(hit);
+
+            }
             var enemyAI = hit.transform.GetComponent<IDamageable>(); // Get the enemy AI component
             enemyAI?.TakeDamage(gun.Damage); // Damage the enemy
         }
         // Method to instantiate bullet hole effect at hit position
         private void InstantiateBulletHole(RaycastHit hit)
         {
+
             // Check if bullet hole prefab is assigned and if the hit object is still active
             if (bulletHolePrefab == null || !hit.transform.gameObject.activeInHierarchy) return;
             Vector3 gapOffset = hit.normal * 0.01f; // Offset to prevent z-fighting

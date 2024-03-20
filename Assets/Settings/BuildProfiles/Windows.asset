@@ -28,6 +28,8 @@ MonoBehaviour:
     m_path: Assets/Scenes/Desert.unity
   - m_enabled: 1
     m_path: Assets/Scenes/CrystalMine.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Island.unity
   references:
     version: 2
     RefIds:

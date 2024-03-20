@@ -6,4 +6,6 @@ public class LeverValue : ScriptableObject
 {
     public int EnemyQuantity;
     public int Score;
+    public int CoinQuantity;
+    public int lastLeverScence;
 }

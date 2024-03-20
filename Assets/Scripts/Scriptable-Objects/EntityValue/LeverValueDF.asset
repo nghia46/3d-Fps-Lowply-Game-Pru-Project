@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b48f04124be9d4391e2206737d712a, type: 3}
   m_Name: LeverValueDF
   m_EditorClassIdentifier: 
-  EnemyQuantity: 5
+  EnemyQuantity: 2
   Score: 0
+  lastLeverScence: 2

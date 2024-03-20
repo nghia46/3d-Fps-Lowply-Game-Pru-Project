@@ -8,8 +8,8 @@ public class MeleEnemy : MonoBehaviour, IDamageable, IEnemy
 {
     [SerializeField] public Enemy enemy;
     [SerializeField] private Renderer enemyRenderer;
+    [SerializeField] private Animator animator;
     private NavMeshAgent navMeshAgent;
-
     public float CurrentHealth;
     private ExplosionEffect explosionEffect;
     private GameObject player;
@@ -19,6 +19,7 @@ public class MeleEnemy : MonoBehaviour, IDamageable, IEnemy
     {
         canAttack = true;
         CurrentHealth = enemy.MaxHealth;
+        animator = GetComponentInChildren<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player");
         explosionEffect = GetComponent<ExplosionEffect>();
@@ -78,16 +79,15 @@ public class MeleEnemy : MonoBehaviour, IDamageable, IEnemy
     }
     private void OnDestroy()
     {
+        EventManager.Instance.StartEnemyDieEvent();
         EventManager.Instance.StartScoreEvent(enemy.Id, enemy.Score);
     }
     IEnumerator FlashDamageColorWhenDamage()
     {
         // Change the color to red
         enemyRenderer.material.color = Color.red;
-
         // Wait for a short duration
         yield return new WaitForSeconds(0.05f);
-
         // Reset the color back to the original color
         enemyRenderer.material.color = Color.white;
     }
@@ -97,17 +97,38 @@ public class MeleEnemy : MonoBehaviour, IDamageable, IEnemy
     }
     public void Die()
     {
+        SpawnRandomCollectible();
         // /CurrentHealth = 0; // Ensure health is not negative
         explosionEffect.Play(transform.position);
         Destroy(gameObject); // Destroy the enemy GameObject
     }
+
+    private void SpawnRandomCollectible()
+    {
+        int collectible = Random.Range(0, 3);
+        switch (collectible)
+        {
+            case 0:
+                Instantiate(enemy.HealthCollectible, this.transform.position, Quaternion.identity);
+                break;
+            case 1:
+                Instantiate(enemy.CoinCollectible, this.transform.position, Quaternion.identity);
+                break;
+            case 2:
+                Instantiate(enemy.AmmoCollectible, this.transform.position, Quaternion.identity);
+                break;
+        }
+    }
+
     public void Attack()
     {
         // Perform attack logic here
         if (player.TryGetComponent<IDamageable>(out var playerBehaviour))
         {
             // Deal damage to the player
+            animator.SetTrigger("Attack");
             playerBehaviour.TakeDamage(enemy.Damage);
+            EventManager.Instance.StartEnemyAttackEvent();
         }
     }
     public float GetCurrentHealth()

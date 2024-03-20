@@ -6,15 +6,17 @@ public class RangedEnemy : MonoBehaviour, IDamageable, IEnemy
 {
     [SerializeField] public Enemy enemy;
     [SerializeField] private Renderer enemyRenderer;
+    [SerializeField] private Animator animator;
     public float CurrentHealth;
     private ExplosionEffect explosionEffect;
     private GameObject player;
     private bool canAttack;
-     
+
     private void Awake()
     {
         canAttack = true;
         CurrentHealth = enemy.MaxHealth;
+        animator = GetComponentInChildren<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         explosionEffect = GetComponent<ExplosionEffect>();
     }
@@ -74,6 +76,7 @@ public class RangedEnemy : MonoBehaviour, IDamageable, IEnemy
     }
     private void OnDestroy()
     {
+        EventManager.Instance.StartEnemyDieEvent();
         EventManager.Instance.StartScoreEvent(enemy.Id, enemy.Score);
     }
     IEnumerator FlashDamageColorWhenDamage()
@@ -93,17 +96,38 @@ public class RangedEnemy : MonoBehaviour, IDamageable, IEnemy
     }
     public void Die()
     {
-        // /CurrentHealth = 0; // Ensure health is not negative
+
+        SpawnRandomCollectible();
+        //
         explosionEffect.Play(transform.position);
         Destroy(gameObject); // Destroy the enemy GameObject
+    }
+    private void SpawnRandomCollectible()
+    {
+        int collectible = Random.Range(0, 3);
+        switch (collectible)
+        {
+            case 0:
+                Instantiate(enemy.HealthCollectible, this.transform.position, Quaternion.identity);
+                break;
+            case 1:
+                Instantiate(enemy.CoinCollectible, this.transform.position, Quaternion.identity);
+                break;
+            case 2:
+                Instantiate(enemy.AmmoCollectible, this.transform.position, Quaternion.identity);
+                break;
+        }
     }
     public void Attack()
     {
         // Perform attack logic here
         if (player.TryGetComponent<IDamageable>(out var playerBehaviour))
         {
+            animator.SetTrigger("Attack");
             // Deal damage to the player
             playerBehaviour.TakeDamage(enemy.Damage);
+            EventManager.Instance.StartEnemyAttackEvent();
+
         }
     }
 

@@ -5,11 +5,8 @@ using UnityEngine;
 
 public class UpdatePoint : MonoBehaviour
 {
-
-    [SerializeField] private int collectableId;
     [SerializeField] public LeverValue value;
     private TextMeshProUGUI _txtScore;
-
     private void Awake()
     {
         _txtScore = GetComponent<TextMeshProUGUI>();

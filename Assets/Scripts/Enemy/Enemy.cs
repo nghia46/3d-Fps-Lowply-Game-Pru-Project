@@ -10,4 +10,7 @@ public class Enemy : ScriptableObject
     public int Speed;
     public int StoppingDistance;
     public float AttackCooldown;
+    public GameObject HealthCollectible;
+    public GameObject CoinCollectible;
+    public GameObject AmmoCollectible;
 }

@@ -8,7 +8,10 @@ public class EventManager : MonoBehaviour
     public event Action NeedReloadingEvent; // Event to handle need reloading
     public event Action GameOverEvent;// Event to handle game over
     public event Action ResetValueEvent; // Event to
+    public event Action EnemyAttackEvent; 
+    public event Action EnemyDieEvent; // Event to
     public event Action ReloadEvent; // Event to handle reload
+    public event Action<int,int> CollectibleEvent; // Event to handle by upgrade
     public event Action<int> ByUpgradeEvent; // Event to handle by upgrade
 
     private void Awake()
@@ -21,6 +24,18 @@ public class EventManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    public void StartEnemyDieEvent()
+    {
+        EnemyDieEvent?.Invoke();
+    }
+    public void StartEnemyAttackEvent()
+    {
+        EnemyAttackEvent?.Invoke();
+    }
+    public void StartCollectibleEvent(int id,int quantity)
+    {
+        CollectibleEvent?.Invoke(id,quantity);
     }
     public void StartResetValueEvent()
     {

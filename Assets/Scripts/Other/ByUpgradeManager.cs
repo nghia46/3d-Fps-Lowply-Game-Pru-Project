@@ -4,6 +4,7 @@ public class ByUpgradeManager : MonoBehaviour
 {
     public PlayerValue player;
     public Gun gun;
+    public LeverValue lever;
     public void Start()
     {
         EventManager.Instance.ByUpgradeEvent += OnByUpgradeEvent;
@@ -13,21 +14,39 @@ public class ByUpgradeManager : MonoBehaviour
         switch (upgradeId)
         {
             case 0:
-                Debug.Log("Upgrade MaxHealth was triggered");
-                player.MaxHealth += 10;
+                if (TakeCoin(5))
+                {
+                    Debug.Log("Upgrade MaxHealth was triggered");
+                    player.MaxHealth += 10;
+                }
                 break;
             case 1:
-                Debug.Log("Upgrade 2 was triggered");
-                gun.Damage += 5;
+                if (TakeCoin(10))
+                {
+                    Debug.Log("Upgrade Damage was triggered");
+                    gun.Damage += 5;
+                }
+
                 break;
             case 2:
-                Debug.Log("Upgrade 3 was triggered");
-                gun.MaxMagazine += 5;
+                if (TakeCoin(7))
+                {
+                    Debug.Log("Upgrade MaxMagazine was triggered");
+                    gun.MaxMagazine += 5;
+                }
                 break;
             default:
                 Debug.Log("Upgrade ID not found");
                 break;
         }
-        Debug.Log("ByUpgradeEvent was triggered: " + upgradeId);
+    }
+    private bool TakeCoin(int quantity)
+    {
+        if (lever.CoinQuantity >= quantity)
+        {
+            lever.CoinQuantity -= quantity;
+            return true;
+        }
+        return false;
     }
 }
