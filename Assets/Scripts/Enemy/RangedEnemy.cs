@@ -63,10 +63,7 @@ public class RangedEnemy : MonoBehaviour, IDamageable, IEnemy
     }
     public void TakeDamage(int damage)
     {
-        if (enemy.MaxHealth >= damage)
-        {
-            CurrentHealth -= damage;
-        }
+        CurrentHealth -= damage;
         if (CurrentHealth <= 0)
         {
             Die();

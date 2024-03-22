@@ -1,6 +1,5 @@
 using System.Collections;
 using Entity;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -69,7 +68,6 @@ public class MeleEnemy : MonoBehaviour, IDamageable, IEnemy
     {
 
         CurrentHealth -= damage;
-
         if (CurrentHealth <= 0)
         {
             Die();

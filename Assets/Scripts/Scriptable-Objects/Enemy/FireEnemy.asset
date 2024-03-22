@@ -16,7 +16,7 @@ MonoBehaviour:
   Score: 20
   MaxHealth: 50
   Damage: 40
-  Speed: 5
+  Speed: 15
   StoppingDistance: 10
   AttackCooldown: 1
   HealthCollectible: {fileID: 1905893595805683562, guid: e4960286ad9f6f748ad0c305d37be79e, type: 3}
