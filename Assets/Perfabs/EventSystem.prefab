@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 964867531028308830}
   - component: {fileID: 4254175061621135658}
   - component: {fileID: 4800320909213674417}
+  - component: {fileID: 3748914475908016311}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -101,3 +102,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 021a2d3f51ac38d49a35e929962f6e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3748914475908016311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950963559482877422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 563280e71183db647b70b65e6ea50437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SettingPanel: {fileID: 0}
