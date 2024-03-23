@@ -1,6 +1,8 @@
 # Game name: Colosium Area
 ## DevLog
 ### Last Preview
+[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://youtu.be/vt5fpE0bzSY)
+
 ![Preview](day4.gif)
 ### Day 1
 - Make Model (Gun,Player,Colosium) as a prototype(DIY)
