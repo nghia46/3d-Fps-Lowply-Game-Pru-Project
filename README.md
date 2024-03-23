@@ -1,7 +1,6 @@
 # Game name: Colosium Area
 ## DevLog
 ### Last Preview
-[![asciicast](https://asciinema.org/a/113463.png)](https://asciinema.org/a/113463)
 
 ![Preview](day4.gif)
 ### Day 1
